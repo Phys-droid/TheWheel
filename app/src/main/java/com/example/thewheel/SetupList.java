@@ -12,13 +12,11 @@ public class SetupList {
     public static UserList getUserList(String id) {
         for (int x = 0; x < setupList.size(); x++) {
             System.out.println(setupList.get(x).userListId);
-            System.out.println("--------XX---------");
-            System.out.println(setupList.get(x).getUser("1").name);
-            if (setupList.get(x).userListId == id) {
+            if (setupList.get(x).userListId.equals(id)) {
                 return setupList.get(x);
             }
         }
-        System.out.println("Specified user not found!");
+        System.out.println("Specified userList not found!");
         return null; // Would be better to return empty list
     }
 }

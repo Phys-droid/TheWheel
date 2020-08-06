@@ -49,16 +49,17 @@ public class UserConfig extends AppCompatActivity {
     void saveNameAndColour(String username, String colour) {
         UserList currentUserList = SetupList.getUserList("1"); // ToDo: Change to id of current setup/userlist
         String newid = Integer.toString(currentUserList.userArray.size() + 1);
+        //System.out.println("---CURRENTLIST:--- " + currentUserList.userListId);
         currentUserList.addUser(newid, username, colour);
-
+        //System.out.println("BEFORE: " + currentUserList.getUser("1").name);
         //Remove if done
-        System.out.println("---USER:---");
-        System.out.println(showPreferences(newid));
+        //System.out.println("---USER:---");
+        System.out.println("PREF: " + showPreferences());
 
     }
 
-    String showPreferences(String newid) {
-        return SetupList.getUserList(newid).getUser("1").name;
+    String showPreferences() {
+        return SetupList.getUserList("1").getUser("1").name;
     }
 
 }
