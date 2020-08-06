@@ -28,7 +28,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openOptions(){
-        Intent intent = new Intent(this, MainActivity.class); /* TODO: change to Pädes activity*/
+        Intent intent = new Intent(this, UserOverview.class); /* TODO: change to Pädes activity*/
+
         startActivity(intent);
 
     }
