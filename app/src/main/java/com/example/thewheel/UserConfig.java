@@ -15,6 +15,7 @@ public class UserConfig extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_config);
+
         //Auto fill in some color
         // ToDo: Make color random
         EditText colourBox = (EditText) findViewById(R.id.colourInput);
