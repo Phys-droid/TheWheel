@@ -24,7 +24,14 @@ public class UserList {
                 return this.userArray.get(x);
             }
         }
-        System.out.println("Specified user not found!");
+        System.out.println("Specified user not found!"); // Would be better to return empty list, shouldn't return null
         return null;
+    }
+    public ArrayList<String> getAllNames() {
+        ArrayList<String> nameList = new ArrayList();
+        for (int x = 0; x < this.userArray.size(); x++) {
+            nameList.add(this.userArray.get(x).name);
+        }
+        return nameList;
     }
 }
