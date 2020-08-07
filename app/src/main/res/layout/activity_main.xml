@@ -7,6 +7,14 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <ImageView
+        android:id="@+id/test"
+        android:layout_width="574dp"
+        android:layout_height="700dp"
+        app:srcCompat="@drawable/singleplayer"
+        tools:layout_editor_absoluteX="-40dp"
+        tools:layout_editor_absoluteY="48dp" />
+
     <Button
         android:id="@+id/button_spin"
         android:layout_width="wrap_content"

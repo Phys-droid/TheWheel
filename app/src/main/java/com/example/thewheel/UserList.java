@@ -7,6 +7,7 @@ public class UserList {
     public ArrayList<User> userArray;
     public String userListId;
 
+
     public UserList(String id) {
         this.userArray = new ArrayList<>();
         this.userListId = id;
@@ -15,6 +16,7 @@ public class UserList {
         User newUser = new User(id, name, colour);
         System.out.println("My Name: " + newUser.name);
         this.userArray.add(newUser);
+
     }
     public User getUser(String id) {
         for (int x = 0; x < this.userArray.size(); x++) {
@@ -27,4 +29,5 @@ public class UserList {
         System.out.println("Specified user not found!");
         return null;
     }
+
 }
