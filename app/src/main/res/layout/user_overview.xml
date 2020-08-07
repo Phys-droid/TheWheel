@@ -20,8 +20,8 @@
 
     <TextView
         android:id="@+id/setupNumber"
-        android:layout_width="240dp"
-        android:layout_height="70dp"
+        android:layout_width="242dp"
+        android:layout_height="29dp"
         android:layout_marginTop="12dp"
         android:text="INSERT_STRING_SETUP_NUMBER"
         app:layout_constraintStart_toStartOf="@+id/userOverview"
@@ -57,21 +57,22 @@
         app:layout_constraintStart_toStartOf="@+id/buttonAddUser"
         app:layout_constraintTop_toBottomOf="@+id/buttonAddUser" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView2"
-        android:layout_width="318dp"
-        android:layout_height="193dp"
-        android:layout_marginTop="12dp"
-        app:layout_constraintStart_toStartOf="@+id/setupNumber"
-        app:layout_constraintTop_toBottomOf="@+id/setupNumber" />
-
     <Button
         android:id="@+id/buttonAddUser"
         android:layout_width="39dp"
         android:layout_height="36dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="40dp"
         android:text="+"
-        app:layout_constraintStart_toStartOf="@+id/recyclerView2"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView2" />
+        app:layout_constraintStart_toStartOf="@+id/userView"
+        app:layout_constraintTop_toBottomOf="@+id/userView" />
+
+    <ListView
+        android:id="@+id/userView"
+
+        android:layout_width="242dp"
+        android:layout_height="222dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="@+id/setupNumber"
+        app:layout_constraintTop_toBottomOf="@+id/setupNumber" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
