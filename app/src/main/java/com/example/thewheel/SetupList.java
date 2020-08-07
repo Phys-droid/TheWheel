@@ -1,23 +1,7 @@
 package com.example.thewheel;
-
-import android.content.Context;
-import android.os.Environment;
-import android.view.View;
-import android.widget.Toast;
-
-import java.io.FileWriter;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
-//These imports are needed to store and get data from files
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+
 
 public class SetupList {
     //ToDo: Make SetupList read in files and save lists to file, with help of StorageControl
