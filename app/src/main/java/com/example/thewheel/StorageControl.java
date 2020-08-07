@@ -14,9 +14,9 @@ public class StorageControl {
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
      */
 
-    public void save(View currentView) {
+    public void save(View currentView, String filename) {
         Context currentContext = currentView.getContext();
-        String filenameExternal = "Users.txt";
+        String filenameExternal = filename;
 
         //Text of the Document
         // ToDo: Fill in all users.

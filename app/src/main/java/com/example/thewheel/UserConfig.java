@@ -37,7 +37,7 @@ public class UserConfig extends AppCompatActivity {
                 StorageControl storageControl = new StorageControl();
                 System.out.println("CurrentView: " + currentFocus);
 
-                storageControl.save(currentFocus);
+                storageControl.save(currentFocus, "User.txt");
                 // Move saving
 
                 EditText nameBox = (EditText) findViewById(R.id.nameInput);
