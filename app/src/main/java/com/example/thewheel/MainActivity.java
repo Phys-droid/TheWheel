@@ -8,7 +8,9 @@ import androidx.core.graphics.drawable.DrawableCompat;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
@@ -30,18 +32,31 @@ import static com.example.thewheel.R.drawable.singleplayer;
 
 public class MainActivity extends AppCompatActivity {
 
-
-    private ImageView x;
+    //define variables
+    private ImageView x;    //Throwaway_variable
     private ImageButton option_button;
+    private int max_number_of_players;
+    public ImageView spinning_part;
     private Button button_spin;
-    ImageView spinning_part;
     static final Random r = new Random(System.currentTimeMillis());
+    ImageView one_user;
+    ArrayList<ImageView> circle_fragments;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        max_number_of_players = 1;
+        for (int i = 0; i<max_number_of_players; i++){
+            x = (ImageView) findViewById(R.id.test);
+
+        }
+
+
+        //connections to functions
         option_button = findViewById(R.id.button_options);
         option_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,6 +73,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+
+
+
+    //________________________________________________________________________________________________________________________________________________________________________________________
     private void rotationAnimation() {
         RotateAnimation a = new RotateAnimation(0, (180+r.nextInt())/1000, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         ImageView animated = findViewById(R.id.spinning_part);
@@ -67,6 +86,21 @@ public class MainActivity extends AppCompatActivity {
         a.setDuration(1000);
         a.setFillAfter(true);
         animated.startAnimation(a);
+    }
+
+
+    public Bitmap rotateBitmap(Bitmap original, float degrees) {
+        int width = original.getWidth();
+        int height = original.getHeight();
+
+        Matrix matrix = new Matrix();
+        matrix.preRotate(degrees);
+
+        Bitmap rotatedBitmap = Bitmap.createBitmap(original, 0, 0, width, height, matrix, true);
+        Canvas canvas = new Canvas(rotatedBitmap);
+        canvas.drawBitmap(original, 5.0f, 0.0f, null);
+
+        return rotatedBitmap;
     }
 
     public void openOptions() {
@@ -102,18 +136,24 @@ public class MainActivity extends AppCompatActivity {
 */
 
 
-    public void wheel(UserList Setup) {
+    public void wheel(UserList Setup, ArrayList<ImageView> circle_fragments) {                 //TODO
         ArrayList<User> UserArray = Setup.userArray;
         ArrayList<Bitmap> picture = new ArrayList<>();
         ArrayList<ImageView> graphics = new ArrayList<>();
         int number_of_players = UserArray.size();
 
 
+
+
+
         for (int i=0;i<number_of_players;i++){     //Change Type String to Color in User class
+
             /*
-            String a = UserArray.get(i).colour;
+            Color a = UserArray.get(i).colour;
+            imageViewIcon.setColorFilter(ContextCompat.getColor(context, a));
             Color c = new Color(Integer.parseInt(a));
             */
+
 
             x = (ImageView) findViewById(R.id.test);
             //x.setColorFilter(c);
