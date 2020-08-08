@@ -11,19 +11,20 @@
         android:id="@+id/test"
         android:layout_width="574dp"
         android:layout_height="700dp"
-        app:srcCompat="@drawable/singleplayer"
-        tools:layout_editor_absoluteX="-40dp"
-        tools:layout_editor_absoluteY="48dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/singleplayer" />
 
     <ImageView
         android:id="@+id/Circle_of_Wheel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="84dp"
+        android:layout_width="412dp"
+        android:layout_height="778dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.51"
         app:srcCompat="@drawable/circle" />
 
     <Button
@@ -57,10 +58,12 @@
         android:id="@+id/Pointer_of_wheel"
         android:layout_width="104dp"
         android:layout_height="56dp"
-        android:layout_marginTop="128dp"
-        app:layout_constraintEnd_toStartOf="@+id/Circle_of_Wheel"
-        app:layout_constraintStart_toEndOf="@+id/Circle_of_Wheel"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.214"
         app:srcCompat="@drawable/triangle" />
 
     <TextView
@@ -78,13 +81,34 @@
 
     <ImageView
         android:id="@+id/spinning_part"
-        android:layout_width="167dp"
-        android:layout_height="283dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/Circle_of_Wheel"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.41"
+        android:layout_width="239dp"
+        android:layout_height="328dp"
+        app:layout_constraintBottom_toTopOf="@+id/Circle_of_Wheel"
+        app:layout_constraintEnd_toStartOf="@+id/Circle_of_Wheel"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/Circle_of_Wheel"
+        app:layout_constraintTop_toBottomOf="@+id/Circle_of_Wheel"
         app:srcCompat="@drawable/spinner" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="20dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="20dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="20dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
