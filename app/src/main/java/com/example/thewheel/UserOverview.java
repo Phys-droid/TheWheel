@@ -47,7 +47,7 @@ public class UserOverview extends AppCompatActivity {
     void fillUserView() {
         //Create Array Adapter to fill in userView
         ListView userView = (ListView) findViewById(R.id.userView);
-        final ArrayList<String> nameList = SetupList.getUserList("1").getAllNames();
+        final ArrayList<String> nameList = SetupList.getUserList("1").getAllNames();  // ToDo: Change ID to current Setup ID
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
                 this,android.R.layout.simple_list_item_1,
@@ -62,7 +62,12 @@ public class UserOverview extends AppCompatActivity {
             public void onItemClick(AdapterView<?> arg0, View v,int position, long arg3)
             {
                 String selectedUser =nameList.get(position);
-                Toast.makeText(getApplicationContext(), "User Selected : "+selectedUser,   Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "User Selected : " + selectedUser,   Toast.LENGTH_LONG).show();
+                // Change to Edit User
+                Intent intent = new Intent(UserOverview.this, UserConfig.class);
+                System.out.println("A USER HAS BEEN CLICKED");
+                UserConfig.currentUser = SetupList.searchAllListsByName(selectedUser);
+                startActivity(intent);
             }
         });
     }
