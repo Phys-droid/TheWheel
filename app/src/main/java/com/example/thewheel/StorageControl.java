@@ -36,12 +36,13 @@ public class StorageControl {
             outputStream = new FileOutputStream(file, false);
 
             UserList currentUserList = SetupList.getUserList(SetupList.currentSetup);
-            writeLine("SETUP_NUMBER: " + SetupList.currentSetup + "\n", outputStream);
+            writeLine("CURRENT_SETUP_NUMBER: " + SetupList.currentSetup, outputStream);
+            writeLine("NUMBER_OF_USERS: " + SetupList.userCounter, outputStream);
             for (int x = 0; x < currentUserList.getArraySize(); x ++) {
                 System.out.println("LOOOK:-------" + x);
                 writeLine("USER_ID: " + currentUserList.userArray.get(x).id, outputStream);
                 writeLine("USER_NAME: " + currentUserList.userArray.get(x).name, outputStream);
-                writeLine("USER_COLOUR: " + currentUserList.userArray.get(x).colour + "\n", outputStream);
+                writeLine("USER_COLOUR: " + currentUserList.userArray.get(x).colour, outputStream);
             }
 
             System.out.println("SUCCESFULLY WRITTEN: " + file);
