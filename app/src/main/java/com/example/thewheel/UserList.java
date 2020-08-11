@@ -47,4 +47,8 @@ public class UserList {
         System.out.println("This username doesn't exist!");
         return new User ("-1", "N/A", "N/A");
     }
+
+    public int getArraySize() {
+        return this.userArray.size();
+    }
 }

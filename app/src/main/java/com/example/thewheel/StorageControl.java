@@ -5,22 +5,14 @@ import android.os.Environment;
 import android.view.View;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 
 public class StorageControl {
-
-    //ToDo: Add following Code to the manifest:
-    /*
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-     */
 
     public void save(View currentView, String filename) {
         Context currentContext = currentView.getContext();
         String filenameExternal = filename;
-
-        //Text of the Document
-        // ToDo: Fill in all users.
-        String textToWrite = "AllUsersListedHere";
 
         //Checking the availability state of the External Storage.
         String state = Environment.getExternalStorageState();
@@ -39,14 +31,32 @@ public class StorageControl {
             //second argument of FileOutputStream constructor indicates whether
             //to append or create new file if one exists
             //file.getParentFile().mkdirs();
+
+            // Here the writing process takes place
             outputStream = new FileOutputStream(file, false);
 
-            outputStream.write(textToWrite.getBytes());
+            UserList currentUserList = SetupList.getUserList(SetupList.currentSetup);
+            writeLine("SETUP_NUMBER: " + SetupList.currentSetup + "\n", outputStream);
+            for (int x = 0; x < currentUserList.getArraySize(); x ++) {
+                System.out.println("LOOOK:-------" + x);
+                writeLine("USER_ID: " + currentUserList.userArray.get(x).id, outputStream);
+                writeLine("USER_NAME: " + currentUserList.userArray.get(x).name, outputStream);
+                writeLine("USER_COLOUR: " + currentUserList.userArray.get(x).colour + "\n", outputStream);
+            }
+
             System.out.println("SUCCESFULLY WRITTEN: " + file);
             outputStream.flush();
             outputStream.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void load(View currentView, String filename) {
+        //ToDo: Load config from .txt file
+    }
+
+    public void writeLine (String line, OutputStream outputStream) throws IOException {
+        outputStream.write((line + "\n").getBytes());
     }
 }

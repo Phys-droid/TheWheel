@@ -8,6 +8,8 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Random;
+
 
 public class UserConfig extends AppCompatActivity {
 
@@ -36,14 +38,6 @@ public class UserConfig extends AppCompatActivity {
         final Button buttonSave = findViewById(R.id.buttonSave);
         buttonSave.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                // ToDo: Move saving
-                View currentFocus = findViewById(android.R.id.content).getRootView();
-                StorageControl storageControl = new StorageControl();
-                System.out.println("CurrentView: " + currentFocus);
-
-                storageControl.save(currentFocus, "User.txt");
-                // Move saving
-
                 EditText nameBox = (EditText) findViewById(R.id.nameInput);
                 EditText colourBox = (EditText) findViewById(R.id.colourInput);
 
@@ -53,6 +47,12 @@ public class UserConfig extends AppCompatActivity {
                 else {
                     saveNameAndColour(nameBox.getText().toString(), colourBox.getText().toString());
                 }
+                // ToDo: Move saving
+                View currentFocus = findViewById(android.R.id.content).getRootView();
+                StorageControl storageControl = new StorageControl();
+                System.out.println("CurrentView: " + currentFocus);
+                storageControl.save(currentFocus, "Wheel_Config.txt");
+                // Move saving
                 Intent intent = new Intent(UserConfig.this, UserOverview.class);
                 startActivity(intent);
             }
@@ -61,8 +61,8 @@ public class UserConfig extends AppCompatActivity {
 
     void saveNameAndColour(String username, String colour)  {
         SetupList.userCounter = SetupList.userCounter + 1; // Add 1 to userCounter because new User will be added
-        UserList currentUserList = SetupList.getUserList(Integer.toString(SetupList.userCounter)); // ToDo: Change to id of current setup/userlist
-        String newid = Integer.toString(currentUserList.userArray.size() + 1);
+        UserList currentUserList = SetupList.getUserList(Integer.toString(1)); // ToDo: Change to id of current setup/userlist
+        String newid = Integer.toString(SetupList.userCounter);
         //System.out.println("---CURRENTLIST:--- " + currentUserList.userListId);
         currentUserList.addUser(newid, username, colour);
         //System.out.println("BEFORE: " + currentUserList.getUser("1").name);
@@ -80,7 +80,7 @@ public class UserConfig extends AppCompatActivity {
     }
 
     String showPreferences() {
-        return SetupList.getUserList("1").getUserById("1").name;
+        return SetupList.getUserList("1").getUserById("1").name; //ToDo: Update or remove this method
     }
 
     private boolean checkForCurrentUser() {
@@ -95,7 +95,13 @@ public class UserConfig extends AppCompatActivity {
         //Auto fill in some color
         // ToDo: Make color random
         EditText colourBox = (EditText) findViewById(R.id.colourInput);
-        colourBox.setText("#640808");
+
+        String colorRGB = "#";
+        Random random = new Random();
+        for (int x = 0; x < 6; x++) {
+            colorRGB = colorRGB + random.nextInt(10);
+        }
+        colourBox.setText(colorRGB);
     }
 
     private void editUserMenu(User editUser) {
