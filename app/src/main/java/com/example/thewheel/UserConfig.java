@@ -46,7 +46,13 @@ public class UserConfig extends AppCompatActivity {
 
                 EditText nameBox = (EditText) findViewById(R.id.nameInput);
                 EditText colourBox = (EditText) findViewById(R.id.colourInput);
-                saveNameAndColour(nameBox.getText().toString(), colourBox.getText().toString());
+
+                if (currentUser != null) {
+                    updateNameAndColour(nameBox.getText().toString(), colourBox.getText().toString());
+                }
+                else {
+                    saveNameAndColour(nameBox.getText().toString(), colourBox.getText().toString());
+                }
                 Intent intent = new Intent(UserConfig.this, UserOverview.class);
                 startActivity(intent);
             }
@@ -65,6 +71,12 @@ public class UserConfig extends AppCompatActivity {
 
         System.out.println("PREF: " + showPreferences());
 
+    }
+
+    void updateNameAndColour(String username, String colour) {
+        // ToDo: Properly update the users fields
+        SetupList.searchAllListsByName(currentUser.name).updateUser(username, colour);
+        currentUser = null;
     }
 
     String showPreferences() {
