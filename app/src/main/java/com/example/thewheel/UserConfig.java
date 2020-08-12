@@ -85,7 +85,6 @@ public class UserConfig extends AppCompatActivity {
                 SeekBar seekBarRed = (SeekBar) findViewById(R.id.seekRed);
                 int seekValueRed = seekBarRed.getProgress();
                 ColourRgb oldColour = ColourRgb.hexToRgbConverter(currentColour);
-                System.out.println("OLDCOLOR, R:" + oldColour.red + "G:" + oldColour.green + "B: " + oldColour.blue);
                 oldColour.red = seekValueRed;
                 currentColour = ColourRgb.rgbToHexConverter(oldColour);
                 TextView colorBar = (TextView) findViewById(R.id.colourBar);
@@ -105,8 +104,13 @@ public class UserConfig extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress,
                                           boolean fromUser) {
-                // TODO Auto-generated method stub
-
+                SeekBar seekBarGreen = (SeekBar) findViewById(R.id.seekGreen);
+                int seekValueGreen = seekBarGreen.getProgress();
+                ColourRgb oldColour = ColourRgb.hexToRgbConverter(currentColour);
+                oldColour.green = seekValueGreen;
+                currentColour = ColourRgb.rgbToHexConverter(oldColour);
+                TextView colorBar = (TextView) findViewById(R.id.colourBar);
+                colorBar.setTextColor(Color.parseColor(currentColour));
             }
 
             @Override
@@ -122,8 +126,13 @@ public class UserConfig extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress,
                                           boolean fromUser) {
-                // TODO Auto-generated method stub
-
+                SeekBar seekBarBlue = (SeekBar) findViewById(R.id.seekBlue);
+                int seekValueBlue = seekBarBlue.getProgress();
+                ColourRgb oldColour = ColourRgb.hexToRgbConverter(currentColour);
+                oldColour.blue = seekValueBlue;
+                currentColour = ColourRgb.rgbToHexConverter(oldColour);
+                TextView colorBar = (TextView) findViewById(R.id.colourBar);
+                colorBar.setTextColor(Color.parseColor(currentColour));
             }
 
             @Override
@@ -188,15 +197,4 @@ public class UserConfig extends AppCompatActivity {
         colourBox.setText(editUser.colour);
         nameBox.setText(editUser.name);
     }
-
-    private void getColors() {
-        SeekBar redBar = findViewById(R.id.seekRed);
-        SeekBar greenBar = findViewById(R.id.seekGreen);
-        SeekBar blueBar = findViewById(R.id.seekBlue);
-        //String hexColour = Colour.rgbToHex(redBar, greenBar, blueBar);
-
-
-    }
-
-
 }
