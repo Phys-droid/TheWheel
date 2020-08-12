@@ -17,7 +17,7 @@ import java.util.Random;
 public class UserConfig extends AppCompatActivity {
 
     public static User currentUser = null;
-    public static String currentColour = "#29b012"; // ToDo: Add correct colour in beginning
+    public static String currentColour = "#29B012"; // ToDo: Add correct colour in beginning
 
 
     @Override
@@ -84,9 +84,10 @@ public class UserConfig extends AppCompatActivity {
                                           boolean fromUser) {
                 SeekBar seekBarRed = (SeekBar) findViewById(R.id.seekRed);
                 int seekValueRed = seekBarRed.getProgress();
-                ColourRgb oldColour = ColourRgb.hexToRgb(currentColour);
+                ColourRgb oldColour = ColourRgb.hexToRgbConverter(currentColour);
+                System.out.println("OLDCOLOR, R:" + oldColour.red + "G:" + oldColour.green + "B: " + oldColour.blue);
                 oldColour.red = seekValueRed;
-                currentColour = ColourRgb.rgbToHex(oldColour);
+                currentColour = ColourRgb.rgbToHexConverter(oldColour);
                 TextView colorBar = (TextView) findViewById(R.id.colourBar);
                 colorBar.setTextColor(Color.parseColor(currentColour));
             }

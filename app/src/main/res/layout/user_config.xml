@@ -34,7 +34,6 @@
         android:layout_marginLeft="56dp"
         android:layout_marginTop="44dp"
         android:text="User-Configuration"
-        android:textStyle="bold"
         android:textSize="36dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -92,7 +91,6 @@
         android:text="."
         android:textColor="#640908"
         android:textSize="350dp"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
