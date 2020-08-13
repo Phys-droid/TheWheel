@@ -6,26 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".UserConfig">
 
-    <EditText
-        android:id="@+id/nameInput"
-        android:layout_width="173dp"
-        android:layout_height="58dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="28dp"
-        android:inputType="text"
-        app:layout_constraintStart_toEndOf="@+id/textName"
-        app:layout_constraintTop_toBottomOf="@+id/textUserConfig" />
-
-    <EditText
-        android:id="@+id/colourInput"
-        android:layout_width="170dp"
-        android:layout_height="57dp"
-        android:layout_marginTop="16dp"
-        android:inputType="text"
-        app:layout_constraintStart_toStartOf="@+id/nameInput"
-        app:layout_constraintTop_toBottomOf="@+id/nameInput" />
-
     <TextView
         android:id="@+id/textUserConfig"
         android:layout_width="317dp"
@@ -38,16 +18,35 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <EditText
+        android:id="@+id/nameInput"
+        android:layout_width="230dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginTop="4dp"
+        android:textSize="26dp"
+        android:inputType="text"
+        android:textCursorDrawable="@null"
+        android:textColor="#640908"
+        android:backgroundTint="#640908"
+        android:textColorHighlight="#640908"
+        android:drawableTint="#640908"
+        android:foregroundTint="#640908"
+        app:layout_constraintStart_toEndOf="@+id/textName"
+        app:layout_constraintTop_toBottomOf="@+id/textUserConfig" />
+
+
     <Button
         android:id="@+id/buttonBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="312dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginLeft="48dp"
+        android:layout_marginBottom="36dp"
         android:text="Back"
-        app:layout_constraintStart_toStartOf="@+id/textName"
-        app:layout_constraintTop_toBottomOf="@+id/textName" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textName" />
 
     <Button
         android:id="@+id/buttonSave"
@@ -61,86 +60,74 @@
 
     <TextView
         android:id="@+id/textName"
-        android:layout_width="115dp"
-        android:layout_height="31dp"
-        android:layout_marginStart="56dp"
-        android:layout_marginLeft="56dp"
-        android:layout_marginTop="40dp"
+        android:layout_width="82dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="12dp"
         android:text="Name:"
-        android:textSize="22dp"
+        android:textSize="26dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textUserConfig" />
 
     <TextView
-        android:id="@+id/textColor"
-        android:layout_width="115dp"
-        android:layout_height="39dp"
-        android:layout_marginTop="52dp"
-        android:text="Colour:"
-        android:textSize="22dp"
-        app:layout_constraintStart_toStartOf="@+id/textName"
-        app:layout_constraintTop_toBottomOf="@+id/textName" />
-
-    <TextView
         android:id="@+id/colourBar"
-        android:layout_width="80dp"
-        android:layout_height="406dp"
-        android:layout_marginTop="36dp"
+        android:layout_width="280dp"
+        android:layout_height="546dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:text="."
+        android:text=":"
         android:textColor="#640908"
-        android:textSize="350dp"
+        android:textSize="750dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <SeekBar
         android:id="@+id/seekRed"
-        android:layout_width="186dp"
-        android:layout_height="51dp"
-        android:layout_marginStart="56dp"
-        android:layout_marginLeft="56dp"
-        android:layout_marginTop="24dp"
-        android:scrollbarStyle="insideInset"
-        android:thumbTint="#640908"
+        android:layout_width="252dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="8dp"
         android:progressBackgroundTint="#640908"
         android:progressTint="#640908"
-        app:layout_constraintStart_toStartOf="@+id/textColor"
-        app:layout_constraintTop_toBottomOf="@+id/textColor" />
+        android:scrollbarStyle="insideInset"
+        android:thumbTint="#640908"
+        app:layout_constraintStart_toEndOf="@+id/textName"
+        app:layout_constraintTop_toBottomOf="@+id/textName" />
 
     <SeekBar
         android:id="@+id/seekGreen"
-        android:layout_width="186dp"
-        android:layout_height="51dp"
-        android:thumbTint="#640908"
+        android:layout_width="252dp"
+        android:layout_height="65dp"
         android:progressBackgroundTint="#640908"
         android:progressTint="#640908"
+        android:thumbTint="#640908"
         app:layout_constraintStart_toStartOf="@+id/seekRed"
         app:layout_constraintTop_toBottomOf="@+id/seekRed" />
 
     <SeekBar
         android:id="@+id/seekBlue"
-        android:layout_width="186dp"
-        android:layout_height="51dp"
-        android:thumbTint="#640908"
+        android:layout_width="252dp"
+        android:layout_height="57dp"
         android:progressBackgroundTint="#640908"
         android:progressTint="#640908"
+        android:thumbTint="#640908"
         app:layout_constraintStart_toStartOf="@+id/seekGreen"
         app:layout_constraintTop_toBottomOf="@+id/seekGreen" />
 
 
     <TextView
         android:id="@+id/rgbText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="12dp"
+        android:layout_width="80dp"
+        android:layout_height="173dp"
 
-        android:layout_marginRight="12dp"
+        android:layout_marginTop="16dp"
         android:text="Red\n\nGreen\n\nBlue"
-        android:textSize="22dp"
-        app:layout_constraintEnd_toStartOf="@+id/seekGreen"
-        app:layout_constraintTop_toTopOf="@+id/seekRed" />
+        android:textSize="26dp"
+        app:layout_constraintStart_toStartOf="@+id/textName"
+        app:layout_constraintTop_toBottomOf="@+id/textName" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
