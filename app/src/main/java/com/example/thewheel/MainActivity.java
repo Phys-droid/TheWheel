@@ -50,11 +50,13 @@ public class MainActivity extends AppCompatActivity {
 
 
         max_number_of_players = 1;
+        int color = Color.parseColor("#AE6118");
         for (int i = 0; i<max_number_of_players; i++){
             x = (ImageView) findViewById(R.id.test);
-
+            x.setColorFilter(color);
         }
-
+        final ImageView a = (ImageView) findViewById(R.id.Halbkreis);
+        a.setColorFilter(color);
 
         //connections to functions
         option_button = findViewById(R.id.button_options);
@@ -66,10 +68,11 @@ public class MainActivity extends AppCompatActivity {
         button_spin = findViewById(R.id.button_spin);
         button_spin.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) { rotationAnimation();
+            public void onClick(View v) { rotationAnimation(a);
             }
         });
-        spinning_part = findViewById(R.id.spinning_part);
+
+        rotationAnimation(a);
     }
 
 
@@ -77,13 +80,10 @@ public class MainActivity extends AppCompatActivity {
 
 
     //________________________________________________________________________________________________________________________________________________________________________________________
-    private void rotationAnimation() {
-        RotateAnimation a = new RotateAnimation(0, (180+r.nextInt())/1000, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-        ImageView animated = findViewById(R.id.spinning_part);
+    private void rotationAnimation(ImageView animated) {
+        RotateAnimation a = new RotateAnimation(0, (180+r.nextInt())/10000, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         a.setInterpolator(new LinearInterpolator());
-        int x =  5 + (int)(Math.random() * 10);
-        a.setRepeatCount(x);
-        a.setDuration(1000);
+        a.setDuration(3000);
         a.setFillAfter(true);
         animated.startAnimation(a);
     }
@@ -115,25 +115,26 @@ public class MainActivity extends AppCompatActivity {
      public void animate_wheel(ArrayList<ImageView> Graphics){                          //TODO
 
     }
-/*
-    public ImageView merge_drawables(ArrayList<ImageView> drawables){                   //TODO
+    public ImageView merge_Drawables(ArrayList<Drawable> drawables){
 
-        ImageView a = (ImageButton) findViewById(R.id.button);
+        Drawable a = drawables.get(0);
+        int l = drawables.size();
+        ImageView r = new ImageView(this);
+        int c = drawables.size();
 
-        Drawable plusIcon = ContextCompat.getDrawable(this, R.drawable.plus);
-        Drawable dotIcon = ContextCompat.getDrawable(this, R.drawable.oval);
+        for(int i = 1; i<c; i++){
+            Drawable b = drawables.get(i);
+            int horizontalInset = (a.getIntrinsicWidth() - b.getIntrinsicWidth()) / 2;
+            LayerDrawable finalDrawable = new LayerDrawable(new Drawable[] {a, b});
+            finalDrawable.setLayerInset(0, 0, 0, 0, a.getIntrinsicHeight());
+            finalDrawable.setLayerInset(1, horizontalInset, b.getIntrinsicHeight(), horizontalInset, 0);
+            r.setImageDrawable(finalDrawable);
 
-        int horizontalInset = (plusIcon.getIntrinsicWidth() - dotIcon.getIntrinsicWidth()) / 2;
-
-        LayerDrawable finalDrawable = new LayerDrawable(new Drawable[] {plusIcon, dotIcon});
-        finalDrawable.setLayerInset(0, 0, 0, 0, dotIcon.getIntrinsicHeight());
-        finalDrawable.setLayerInset(1, horizontalInset, plusIcon.getIntrinsicHeight(), horizontalInset, 0);
-        a.setImageDrawable(finalDrawable);
-        return a;
+        }
+        return r;
 
 
     }
-*/
 
 
     public void wheel(UserList Setup, ArrayList<ImageView> circle_fragments) {                 //TODO
