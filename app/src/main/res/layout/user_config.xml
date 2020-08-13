@@ -122,12 +122,34 @@
         android:id="@+id/rgbText"
         android:layout_width="80dp"
         android:layout_height="173dp"
-
         android:layout_marginTop="16dp"
         android:text="Red\n\nGreen\n\nBlue"
         android:textSize="26dp"
         app:layout_constraintStart_toStartOf="@+id/textName"
         app:layout_constraintTop_toBottomOf="@+id/textName" />
+
+    <TextView
+        android:id="@+id/colour_circle"
+        android:layout_width="349dp"
+        android:layout_height="222dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/colour_circle"
+        android:gravity="center"
+        android:text="NO_TEXT"
+        android:textSize="26dp"
+        app:layout_constraintStart_toStartOf="@+id/rgbText"
+        app:layout_constraintTop_toBottomOf="@+id/rgbText" />
+
+    <TextView
+        android:id="@+id/colour_circle2"
+        android:layout_width="203dp"
+        android:layout_height="213dp"
+        android:layout_marginTop="332dp"
+        android:background="@drawable/colour_circle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

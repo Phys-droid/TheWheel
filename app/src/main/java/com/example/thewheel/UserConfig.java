@@ -1,7 +1,12 @@
 package com.example.thewheel;
 
+import android.content.ClipData;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,6 +15,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 
 import java.util.Random;
 
@@ -24,6 +30,32 @@ public class UserConfig extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_config);
+
+
+
+        //Initialize ColourCircle
+
+
+
+
+
+
+
+
+
+        Resources res = getResources();
+        Drawable shape = ResourcesCompat.getDrawable(res, R.drawable.colour_circle, getTheme());
+        TextView colour_circle = (TextView)findViewById(R.id.colour_circle);
+        colour_circle.setBackground(shape);
+        //colour_circle.setBackgroundResource(R.color.colorAccent);
+        colour_circle.setBackgroundResource(R.drawable.colour_circle);
+        //colour_circle.setBackground(R.drawable.colour_circle);
+        //Initialize ColourCircle
+        Resources res2 = getResources();
+        Drawable shape2 = ResourcesCompat.getDrawable(res2, R.drawable.colour_circle, getTheme());
+        TextView colour_circle2 = (TextView)findViewById(R.id.colour_circle2);
+        colour_circle2.setBackground(shape2);
+
 
         // Check if User exists in order to load, otherwise create new user
         if (checkForCurrentUser() == true) {
@@ -195,4 +227,5 @@ public class UserConfig extends AppCompatActivity {
         EditText nameBox = (EditText) findViewById(R.id.nameInput);
         nameBox.setText(editUser.name);
     }
+
 }

@@ -42,6 +42,14 @@ public class UserOverview extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        //Create PieDemo button
+        final Button buttonToDemo = findViewById(R.id.gotoDemo);
+        buttonToDemo.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(UserOverview.this, PieDemo.class);
+                startActivity(intent);
+            }
+        });
         }
 
     void fillUserView() {

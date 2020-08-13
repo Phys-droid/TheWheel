@@ -75,4 +75,14 @@
         app:layout_constraintStart_toStartOf="@+id/setupNumber"
         app:layout_constraintTop_toBottomOf="@+id/setupNumber" />
 
+    <Button
+        android:id="@+id/gotoDemo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="136dp"
+        android:layout_marginLeft="136dp"
+        android:text="PieDemo"
+        app:layout_constraintStart_toEndOf="@+id/buttonAddUser"
+        app:layout_constraintTop_toTopOf="@+id/buttonAddUser" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
