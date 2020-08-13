@@ -17,7 +17,7 @@ import java.util.Random;
 public class UserConfig extends AppCompatActivity {
 
     public static User currentUser = null;
-    public static String currentColour = "#29B012"; // ToDo: Add correct colour in beginning
+    public static String currentColour = "#000000"; // ToDo: Add correct colour in beginning
 
 
     @Override
@@ -49,17 +49,16 @@ public class UserConfig extends AppCompatActivity {
         buttonSave.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 EditText nameBox = (EditText) findViewById(R.id.nameInput);
-                EditText colourBox = (EditText) findViewById(R.id.colourInput);
 
                 if (currentUser != null) {
-                    updateNameAndColour(nameBox.getText().toString(), colourBox.getText().toString());
+                    updateNameAndColour(nameBox.getText().toString(), currentColour);
                 } else {
-                    saveNameAndColour(nameBox.getText().toString(), colourBox.getText().toString());
+                    saveNameAndColour(nameBox.getText().toString(), currentColour);
                 }
                 // ToDo: Move saving
                 View currentFocus = findViewById(android.R.id.content).getRootView();
                 StorageControl storageControl = new StorageControl();
-                System.out.println("CurrentView: " + currentFocus);
+                //System.out.println("CurrentView: " + currentFocus);
                 storageControl.save(currentFocus, "Wheel_Config.txt");
                 // Move saving
                 Intent intent = new Intent(UserConfig.this, UserOverview.class);
@@ -83,7 +82,8 @@ public class UserConfig extends AppCompatActivity {
             public void onProgressChanged(SeekBar seekBar, int progress,
                                           boolean fromUser) {
                 SeekBar seekBarRed = (SeekBar) findViewById(R.id.seekRed);
-                int seekValueRed = seekBarRed.getProgress();
+                int seekValueRed = (int)(seekBarRed.getProgress()*2.55); //Adapt to go to 255
+                //System.out.println("SeekValueRedBefore: " + (int)(seekBarRed.getProgress())+ " After: " + (int)(seekBarRed.getProgress()*2.55));
                 ColourRgb oldColour = ColourRgb.hexToRgbConverter(currentColour);
                 oldColour.red = seekValueRed;
                 currentColour = ColourRgb.rgbToHexConverter(oldColour);
@@ -105,12 +105,15 @@ public class UserConfig extends AppCompatActivity {
             public void onProgressChanged(SeekBar seekBar, int progress,
                                           boolean fromUser) {
                 SeekBar seekBarGreen = (SeekBar) findViewById(R.id.seekGreen);
-                int seekValueGreen = seekBarGreen.getProgress();
+                int seekValueGreen = (int)(seekBarGreen.getProgress()*2.55);
                 ColourRgb oldColour = ColourRgb.hexToRgbConverter(currentColour);
+                //System.out.println("Color, Red: " +oldColour.red+ " Green: " + oldColour.green + " newGreen: " + seekValueGreen);
                 oldColour.green = seekValueGreen;
                 currentColour = ColourRgb.rgbToHexConverter(oldColour);
+                //System.out.println("HEX OF CURRRENT COLOUR: " + currentColour);
                 TextView colorBar = (TextView) findViewById(R.id.colourBar);
                 colorBar.setTextColor(Color.parseColor(currentColour));
+                //System.out.println("CurrentColor Green: " + ColourRgb.hexToRgbConverter(currentColour).green + " HEX: " + currentColour);
             }
 
             @Override
@@ -127,7 +130,7 @@ public class UserConfig extends AppCompatActivity {
             public void onProgressChanged(SeekBar seekBar, int progress,
                                           boolean fromUser) {
                 SeekBar seekBarBlue = (SeekBar) findViewById(R.id.seekBlue);
-                int seekValueBlue = seekBarBlue.getProgress();
+                int seekValueBlue = (int)(seekBarBlue.getProgress()*2.55);
                 ColourRgb oldColour = ColourRgb.hexToRgbConverter(currentColour);
                 oldColour.blue = seekValueBlue;
                 currentColour = ColourRgb.rgbToHexConverter(oldColour);
@@ -155,8 +158,7 @@ public class UserConfig extends AppCompatActivity {
         //System.out.println("BEFORE: " + currentUserList.getUser("1").name);
         //Remove if done
         //System.out.println("---USER:---");
-
-        System.out.println("PREF: " + showPreferences());
+        //System.out.println("PREF: " + showPreferences());
 
     }
 
@@ -181,20 +183,16 @@ public class UserConfig extends AppCompatActivity {
     private void createNewUserMenu() {
         //Auto fill in some color
         // ToDo: Make color random
-        EditText colourBox = (EditText) findViewById(R.id.colourInput);
 
         String colorRGB = "#";
         Random random = new Random();
         for (int x = 0; x < 6; x++) {
             colorRGB = colorRGB + random.nextInt(10);
         }
-        colourBox.setText(colorRGB);
     }
 
     private void editUserMenu(User editUser) {
-        EditText colourBox = (EditText) findViewById(R.id.colourInput);
         EditText nameBox = (EditText) findViewById(R.id.nameInput);
-        colourBox.setText(editUser.colour);
         nameBox.setText(editUser.name);
     }
 }
