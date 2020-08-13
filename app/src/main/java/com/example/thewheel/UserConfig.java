@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -31,31 +32,7 @@ public class UserConfig extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_config);
 
-
-
-        //Initialize ColourCircle
-
-
-
-
-
-
-
-
-
-        Resources res = getResources();
-        Drawable shape = ResourcesCompat.getDrawable(res, R.drawable.colour_circle, getTheme());
-        TextView colour_circle = (TextView)findViewById(R.id.colour_circle);
-        colour_circle.setBackground(shape);
-        //colour_circle.setBackgroundResource(R.color.colorAccent);
-        colour_circle.setBackgroundResource(R.drawable.colour_circle);
-        //colour_circle.setBackground(R.drawable.colour_circle);
-        //Initialize ColourCircle
-        Resources res2 = getResources();
-        Drawable shape2 = ResourcesCompat.getDrawable(res2, R.drawable.colour_circle, getTheme());
-        TextView colour_circle2 = (TextView)findViewById(R.id.colour_circle2);
-        colour_circle2.setBackground(shape2);
-
+        showNewColour();
 
         // Check if User exists in order to load, otherwise create new user
         if (checkForCurrentUser() == true) {
@@ -63,11 +40,6 @@ public class UserConfig extends AppCompatActivity {
         } else {
             createNewUserMenu();
         }
-
-        // Set correct colour for bar
-        TextView colorBar = (TextView) findViewById(R.id.colourBar);
-        colorBar.setTextColor(Color.parseColor(currentColour));
-
 
         final Button buttonBack = findViewById(R.id.buttonBack);
         buttonBack.setOnClickListener(new View.OnClickListener() {
@@ -119,8 +91,7 @@ public class UserConfig extends AppCompatActivity {
                 ColourRgb oldColour = ColourRgb.hexToRgbConverter(currentColour);
                 oldColour.red = seekValueRed;
                 currentColour = ColourRgb.rgbToHexConverter(oldColour);
-                TextView colorBar = (TextView) findViewById(R.id.colourBar);
-                colorBar.setTextColor(Color.parseColor(currentColour));
+                showNewColour();
             }
 
             @Override
@@ -139,13 +110,9 @@ public class UserConfig extends AppCompatActivity {
                 SeekBar seekBarGreen = (SeekBar) findViewById(R.id.seekGreen);
                 int seekValueGreen = (int)(seekBarGreen.getProgress()*2.55);
                 ColourRgb oldColour = ColourRgb.hexToRgbConverter(currentColour);
-                //System.out.println("Color, Red: " +oldColour.red+ " Green: " + oldColour.green + " newGreen: " + seekValueGreen);
                 oldColour.green = seekValueGreen;
                 currentColour = ColourRgb.rgbToHexConverter(oldColour);
-                //System.out.println("HEX OF CURRRENT COLOUR: " + currentColour);
-                TextView colorBar = (TextView) findViewById(R.id.colourBar);
-                colorBar.setTextColor(Color.parseColor(currentColour));
-                //System.out.println("CurrentColor Green: " + ColourRgb.hexToRgbConverter(currentColour).green + " HEX: " + currentColour);
+                showNewColour();
             }
 
             @Override
@@ -166,8 +133,7 @@ public class UserConfig extends AppCompatActivity {
                 ColourRgb oldColour = ColourRgb.hexToRgbConverter(currentColour);
                 oldColour.blue = seekValueBlue;
                 currentColour = ColourRgb.rgbToHexConverter(oldColour);
-                TextView colorBar = (TextView) findViewById(R.id.colourBar);
-                colorBar.setTextColor(Color.parseColor(currentColour));
+                showNewColour();
             }
 
             @Override
@@ -226,6 +192,21 @@ public class UserConfig extends AppCompatActivity {
     private void editUserMenu(User editUser) {
         EditText nameBox = (EditText) findViewById(R.id.nameInput);
         nameBox.setText(editUser.name);
+    }
+
+    private void showNewColour() {
+        final LinearLayout linear=(LinearLayout) findViewById(R.id.colour_circle);
+        if (linear.getChildAt(0) == null) {
+            linear.addView(new CircleView(this));
+        }
+        else {
+            linear.getChildAt(0).invalidate();
+            linear.addView(new CircleView(this));
+        }
+    }
+
+    public static String getCurrentColourHex() {
+        return currentColour;
     }
 
 }
