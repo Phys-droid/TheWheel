@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
 
 import java.util.Random;
+import java.util.Set;
 
 
 public class UserConfig extends AppCompatActivity {
@@ -41,9 +42,29 @@ public class UserConfig extends AppCompatActivity {
             createNewUserMenu();
         }
 
+        final Button buttonDel = findViewById(R.id.buttonDelete);
+        if (currentUser == null) {
+            buttonDel.setBackgroundColor(Color.parseColor("#EFEFEF"));
+            buttonDel.setTextColor(Color.parseColor("#C7C7C7"));
+        }
+        buttonDel.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if (currentUser == null) {
+                    return;
+                }
+                UserList currentUserList = SetupList.getUserList(SetupList.currentSetup);
+                currentUserList.deleteUserById(currentUser.id);
+                View currentFocus = findViewById(android.R.id.content).getRootView();
+                StorageControl.save(currentFocus, "Wheel_Config.txt");
+                Intent intent = new Intent(UserConfig.this, UserOverview.class);
+                startActivity(intent);
+            }
+        });
+
         final Button buttonBack = findViewById(R.id.buttonBack);
         buttonBack.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                currentUser = null;
                 Intent intent = new Intent(UserConfig.this, UserOverview.class);
                 startActivity(intent);
             }
@@ -61,8 +82,6 @@ public class UserConfig extends AppCompatActivity {
                 }
                 // ToDo: Move saving
                 View currentFocus = findViewById(android.R.id.content).getRootView();
-                //System.out.println("CurrentView: " + currentFocus);
-                //System.out.println("configAlreadyExists: " + StorageControl.configAlreadyExists());
                 StorageControl.save(currentFocus, "Wheel_Config.txt");
                 // Move saving
                 Intent intent = new Intent(UserConfig.this, UserOverview.class);

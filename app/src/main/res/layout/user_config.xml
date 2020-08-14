@@ -130,5 +130,14 @@
         app:layout_constraintStart_toStartOf="@+id/rgbText"
         app:layout_constraintTop_toBottomOf="@+id/rgbText" />
 
+    <Button
+        android:id="@+id/buttonDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="Delete"
+        app:layout_constraintStart_toStartOf="@+id/rgbText"
+        app:layout_constraintTop_toBottomOf="@+id/rgbText" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,7 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 
 public class UserOverview extends AppCompatActivity {
-
+    public static boolean startUp = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +29,9 @@ public class UserOverview extends AppCompatActivity {
             SetupList.addSetup(new UserList());
             System.out.println("I DEFINETLY WASN'T HERE");
         }
-        else {
+        else if (startUp) {
             StorageControl.load(findViewById(android.R.id.content).getRootView());
+            startUp = false;
         }
 
         fillUserView();
@@ -77,14 +78,14 @@ public class UserOverview extends AppCompatActivity {
             public void onItemClick(AdapterView<?> arg0, View v,int position, long arg3)
             {
                 String selectedUser =nameList.get(position);
-                Toast.makeText(getApplicationContext(), "User Selected : " + selectedUser,   Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), "User Selected : " + selectedUser,   Toast.LENGTH_LONG).show();
                 // Change to Edit User
                 Intent intent = new Intent(UserOverview.this, UserConfig.class);
-                System.out.println("A USER HAS BEEN CLICKED");
+                //System.out.println("A USER HAS BEEN CLICKED");
                 UserConfig.currentUser = SetupList.searchAllListsByName(selectedUser);
+                //System.out.println("SEARCH USERS: " + UserConfig.currentUser);
                 startActivity(intent);
             }
         });
     }
-
 }

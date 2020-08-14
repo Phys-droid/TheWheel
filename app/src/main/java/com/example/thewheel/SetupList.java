@@ -1,6 +1,6 @@
 package com.example.thewheel;
 import java.util.ArrayList;
-
+import java.util.Objects;
 
 
 public class SetupList {
@@ -29,11 +29,11 @@ public class SetupList {
     public static User searchAllListsByName (String name) {
         for (int x = 0; x < setupList.size(); x++) {
             User foundUser = setupList.get(x).getUserByName(name);
-            if (!foundUser.name.equals("N/A")) {
+            if (foundUser != null) {
                 return foundUser;
             }
         }
-        return new User("N/A","N/A");
+        return null;
     }
 
 

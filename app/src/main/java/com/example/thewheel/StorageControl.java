@@ -89,7 +89,6 @@ public class StorageControl {
                 }
                 if (configlines[x].equals("NUMBER_OF_USERS:")) {
                     x += 1;
-                    User.userCounter = Integer.parseInt(configlines[x]);
                 }
                 if (configlines[x].equals("CURRENT_SETUP_ID:")) {
                     x += 1;
@@ -113,6 +112,7 @@ public class StorageControl {
                     // Save User
                     System.out.println("CURRENT_USERLIST_ID: " + currentUserList.userListId);
                     currentUserList.addUser(currentName, currentColour);
+                    //System.out.println("CURRENT_USER_ID: " + currentUserList.getUserByName("HERRO").id);
                 }
              }
 

@@ -35,7 +35,7 @@ public class UserList {
         ArrayList<String> nameList = new ArrayList();
         for (int x = 0; x < this.userArray.size(); x++) {
             nameList.add(this.userArray.get(x).name);
-            System.out.println("NAMELIST: " + nameList);
+            //System.out.println("NAMELIST: " + nameList);
         }
         return nameList;
     }
@@ -47,7 +47,11 @@ public class UserList {
             }
         }
         System.out.println("This username doesn't exist!");
-        return new User ( "N/A", "N/A");
+        return null;
+    }
+
+    public void deleteUserById(String id) {
+        this.userArray.remove(getUserById(id));
     }
 
     public int getArraySize() {
