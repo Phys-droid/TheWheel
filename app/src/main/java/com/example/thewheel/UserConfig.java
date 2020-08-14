@@ -56,6 +56,7 @@ public class UserConfig extends AppCompatActivity {
                 currentUserList.deleteUserById(currentUser.id);
                 View currentFocus = findViewById(android.R.id.content).getRootView();
                 StorageControl.save(currentFocus, "Wheel_Config.txt");
+                SoundManager.togg.start();
                 Intent intent = new Intent(UserConfig.this, UserOverview.class);
                 startActivity(intent);
             }
@@ -65,6 +66,7 @@ public class UserConfig extends AppCompatActivity {
         buttonBack.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 currentUser = null;
+                SoundManager.togg.start();
                 Intent intent = new Intent(UserConfig.this, UserOverview.class);
                 startActivity(intent);
             }
@@ -74,7 +76,7 @@ public class UserConfig extends AppCompatActivity {
         buttonSave.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 EditText nameBox = (EditText) findViewById(R.id.nameInput);
-
+                SoundManager.togg.start();
                 if (currentUser != null) {
                     updateNameAndColour(nameBox.getText().toString(), currentColour);
                 } else {

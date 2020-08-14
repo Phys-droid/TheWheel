@@ -35,6 +35,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginTop="68dp"
         android:text="Wheel"
+        android:soundEffectsEnabled="false"
         app:layout_constraintStart_toEndOf="@+id/userOverview"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -45,6 +46,7 @@
         android:layout_marginStart="88dp"
         android:layout_marginLeft="88dp"
         android:text="buttonLoad"
+        android:soundEffectsEnabled="false"
         app:layout_constraintStart_toEndOf="@+id/buttonSave"
         app:layout_constraintTop_toTopOf="@+id/buttonSave" />
 
@@ -54,6 +56,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
         android:text="Save"
+        android:soundEffectsEnabled="false"
         app:layout_constraintStart_toStartOf="@+id/buttonAddUser"
         app:layout_constraintTop_toBottomOf="@+id/buttonAddUser" />
 
@@ -63,6 +66,7 @@
         android:layout_height="36dp"
         android:layout_marginTop="40dp"
         android:text="+"
+        android:soundEffectsEnabled="false"
         app:layout_constraintStart_toStartOf="@+id/userView"
         app:layout_constraintTop_toBottomOf="@+id/userView" />
 
@@ -82,6 +86,7 @@
         android:layout_marginStart="136dp"
         android:layout_marginLeft="136dp"
         android:text="PieDemo"
+        android:soundEffectsEnabled="false"
         app:layout_constraintStart_toEndOf="@+id/buttonAddUser"
         app:layout_constraintTop_toTopOf="@+id/buttonAddUser" />
 

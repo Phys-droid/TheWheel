@@ -28,10 +28,12 @@ public class UserOverview extends AppCompatActivity {
             // ToDo: Find out what to do with new userlist
             SetupList.addSetup(new UserList());
             System.out.println("I DEFINETLY WASN'T HERE");
+            SoundManager.initialize(this);
         }
         else if (startUp) {
             StorageControl.load(findViewById(android.R.id.content).getRootView());
             startUp = false;
+            SoundManager.initialize(this);
         }
 
         fillUserView();
@@ -39,6 +41,7 @@ public class UserOverview extends AppCompatActivity {
         final Button buttonWheel = findViewById(R.id.buttonWheel);
         buttonWheel.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                SoundManager.togg.start();
                 Intent intent = new Intent(UserOverview.this, MainActivity.class);
                 startActivity(intent);
             }
@@ -46,6 +49,8 @@ public class UserOverview extends AppCompatActivity {
         final Button buttonAddUser = findViewById(R.id.buttonAddUser);
         buttonAddUser.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                SoundManager.togg.start();
+
                 Intent intent = new Intent(UserOverview.this, UserConfig.class);
                 startActivity(intent);
             }
@@ -54,6 +59,7 @@ public class UserOverview extends AppCompatActivity {
         final Button buttonToDemo = findViewById(R.id.gotoDemo);
         buttonToDemo.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                SoundManager.togg.start();
                 Intent intent = new Intent(UserOverview.this, PieDemo.class);
                 startActivity(intent);
             }
