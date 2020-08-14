@@ -6,19 +6,17 @@ import java.util.ArrayList;
 public class SetupList {
     //ToDo: Make SetupList read in files and save lists to file, with help of StorageControl
 
-    public static int userCounter = 0;
     public static String currentSetup = "1";
 
     public static ArrayList<UserList> setupList = new ArrayList<>();
 
-    public static void addSetup(String id) {
-        UserList newUserList = new UserList(id);
+    public static void addSetup(UserList newUserList) {
         setupList.add(newUserList);
     }
 
     public static UserList getUserList(String id) {
         for (int x = 0; x < setupList.size(); x++) {
-            System.out.println(setupList.get(x).userListId);
+            //System.out.println(setupList.get(x).userListId);
             if (setupList.get(x).userListId.equals(id)) {
 
                 return setupList.get(x);
@@ -35,7 +33,7 @@ public class SetupList {
                 return foundUser;
             }
         }
-        return new User("-1","N/A","N/A");
+        return new User("N/A","N/A");
     }
 
 

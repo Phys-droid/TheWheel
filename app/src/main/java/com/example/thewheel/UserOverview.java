@@ -24,7 +24,14 @@ public class UserOverview extends AppCompatActivity {
 
         //Create Setup
         //ToDo: Think where to initialize the setup list!
-        SetupList.addSetup("1");
+        if (!StorageControl.configAlreadyExists()) {
+            // ToDo: Find out what to do with new userlist
+            SetupList.addSetup(new UserList());
+            System.out.println("I DEFINETLY WASN'T HERE");
+        }
+        else {
+            StorageControl.load(findViewById(android.R.id.content).getRootView());
+        }
 
         fillUserView();
 

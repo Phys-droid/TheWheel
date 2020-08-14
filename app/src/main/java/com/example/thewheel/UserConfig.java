@@ -61,9 +61,9 @@ public class UserConfig extends AppCompatActivity {
                 }
                 // ToDo: Move saving
                 View currentFocus = findViewById(android.R.id.content).getRootView();
-                StorageControl storageControl = new StorageControl();
                 //System.out.println("CurrentView: " + currentFocus);
-                storageControl.save(currentFocus, "Wheel_Config.txt");
+                //System.out.println("configAlreadyExists: " + StorageControl.configAlreadyExists());
+                StorageControl.save(currentFocus, "Wheel_Config.txt");
                 // Move saving
                 Intent intent = new Intent(UserConfig.this, UserOverview.class);
                 startActivity(intent);
@@ -148,11 +148,9 @@ public class UserConfig extends AppCompatActivity {
 
 
     private void saveNameAndColour(String username, String colour) {
-        SetupList.userCounter = SetupList.userCounter + 1; // Add 1 to userCounter because new User will be added
         UserList currentUserList = SetupList.getUserList(Integer.toString(1)); // ToDo: Change to id of current setup/userlist
-        String newid = Integer.toString(SetupList.userCounter);
         //System.out.println("---CURRENTLIST:--- " + currentUserList.userListId);
-        currentUserList.addUser(newid, username, colour);
+        currentUserList.addUser(username, colour);
         //System.out.println("BEFORE: " + currentUserList.getUser("1").name);
         //Remove if done
         //System.out.println("---USER:---");
@@ -181,17 +179,22 @@ public class UserConfig extends AppCompatActivity {
     private void createNewUserMenu() {
         //Auto fill in some color
         // ToDo: Make color random
-
-        String colorRGB = "#";
-        Random random = new Random();
-        for (int x = 0; x < 6; x++) {
-            colorRGB = colorRGB + random.nextInt(10);
-        }
+        EditText nameBox = (EditText) findViewById(R.id.nameInput);
+        nameBox.setText("");
+        currentColour = ColourRgb.rgbToHexConverter(new ColourRgb(0,0,0));
     }
 
     private void editUserMenu(User editUser) {
         EditText nameBox = (EditText) findViewById(R.id.nameInput);
         nameBox.setText(editUser.name);
+        currentColour = editUser.colour;
+        ColourRgb currentRgbColour = ColourRgb.hexToRgbConverter(editUser.colour);
+        SeekBar seekBarRed = (SeekBar) findViewById(R.id.seekRed);
+        seekBarRed.setProgress(currentRgbColour.red);
+        SeekBar seekBarGreen = (SeekBar) findViewById(R.id.seekGreen);
+        seekBarGreen.setProgress(currentRgbColour.green);
+        SeekBar seekBarBlue = (SeekBar) findViewById(R.id.seekBlue);
+        seekBarBlue.setProgress(currentRgbColour.blue);
     }
 
     private void showNewColour() {

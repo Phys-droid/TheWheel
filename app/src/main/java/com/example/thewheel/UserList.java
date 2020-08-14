@@ -3,17 +3,18 @@ package com.example.thewheel;
 import java.util.ArrayList;
 
 public class UserList {
-
+    public static int userListCounter = 0;
     public ArrayList<User> userArray;
     public String userListId;
 
-    public UserList(String id) {
+    public UserList() {
+        userListCounter += 1;
         this.userArray = new ArrayList<>();
-        this.userListId = id;
+        this.userListId = Integer.toString(userListCounter);
     }
 
-    public void addUser(String id, String name, String colour) {
-        User newUser = new User(id, name, colour);
+    public void addUser(String name, String colour) {
+        User newUser = new User(name, colour);
         System.out.println("My Name: " + newUser.name);
         this.userArray.add(newUser);
     }
@@ -34,6 +35,7 @@ public class UserList {
         ArrayList<String> nameList = new ArrayList();
         for (int x = 0; x < this.userArray.size(); x++) {
             nameList.add(this.userArray.get(x).name);
+            System.out.println("NAMELIST: " + nameList);
         }
         return nameList;
     }
@@ -45,7 +47,7 @@ public class UserList {
             }
         }
         System.out.println("This username doesn't exist!");
-        return new User ("-1", "N/A", "N/A");
+        return new User ( "N/A", "N/A");
     }
 
     public int getArraySize() {
