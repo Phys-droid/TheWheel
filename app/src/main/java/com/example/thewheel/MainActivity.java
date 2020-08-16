@@ -47,12 +47,7 @@ public class MainActivity extends AppCompatActivity {
     Boolean isTrue = Boolean.TRUE;
 
 
-    private void sectionPie(int playerAmount) {
-        for (int x = 0; x < playerAmount; x++) {
-            values[x] = 100/playerAmount;
-            System.out.println("VALUES: " + values);
-        }
-    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,18 +61,23 @@ public class MainActivity extends AppCompatActivity {
         values= new float[number_of_players];
         int color = Color.parseColor("#AE6118");
 
-        sectionPie(number_of_players);
+
+
+
+        for (int x = 0; x < number_of_players; x++) {
+            values[x] = 100/number_of_players;
+            System.out.println("VALUES: " + values);
+        }
 
         final LinearLayout linear=(LinearLayout) findViewById(R.id.wheel);
         values=calculateData(values);
         linear.addView(new MyGraphview(this,values, colors));
-        rotationAnimation(linear);
 
 
 
 
 
-        //connections to functions
+        //buttons
         option_button = findViewById(R.id.button_options);
         option_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,32 +90,6 @@ public class MainActivity extends AppCompatActivity {
                 rotationAnimation(linear);
             }
         });
-
-
-
-
-
-
-
-        //Mainloop
-        /*
-        while(isTrue == Boolean.TRUE){
-            recreate();
-            isTrue = Boolean.FALSE;
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-
-        }
-
-        */
-
-
-
-
     }
 
 
@@ -177,20 +151,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //__________________________________________________________________________________________________________________________________________________________________________________________
     private void rotationAnimation(LinearLayout animated) {
         RotateAnimation a = new RotateAnimation(0, (180+r.nextInt())/10000, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
@@ -201,79 +161,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public Bitmap rotateBitmap(Bitmap original, float degrees) {
-        int width = original.getWidth();
-        int height = original.getHeight();
-
-        Matrix matrix = new Matrix();
-        matrix.preRotate(degrees);
-
-        Bitmap rotatedBitmap = Bitmap.createBitmap(original, 0, 0, width, height, matrix, true);
-        Canvas canvas = new Canvas(rotatedBitmap);
-        canvas.drawBitmap(original, 5.0f, 0.0f, null);
-
-        return rotatedBitmap;
-    }
-
     public void openOptions() {
         Intent intent = new Intent(this, UserOverview.class);
         startActivity(intent);
     }
 
-    public void construct_wheel(int number_of_players, ArrayList<ImageView> Graphics){  //TODO
 
-    }
-
-     public void animate_wheel(ArrayList<ImageView> Graphics){                          //TODO
-
-    }
-    public ImageView merge_Drawables(ArrayList<Drawable> drawables){
-
-        Drawable a = drawables.get(0);
-        int l = drawables.size();
-        ImageView r = new ImageView(this);
-        int c = drawables.size();
-
-        for(int i = 1; i<c; i++){
-            Drawable b = drawables.get(i);
-            int horizontalInset = (a.getIntrinsicWidth() - b.getIntrinsicWidth()) / 2;
-            LayerDrawable finalDrawable = new LayerDrawable(new Drawable[] {a, b});
-            finalDrawable.setLayerInset(0, 0, 0, 0, a.getIntrinsicHeight());
-            finalDrawable.setLayerInset(1, horizontalInset, b.getIntrinsicHeight(), horizontalInset, 0);
-            r.setImageDrawable(finalDrawable);
-
-        }
-        return r;
-
-
-    }
-
-
-    public void wheel(UserList Setup, ArrayList<ImageView> circle_fragments) {                 //TODO
-        ArrayList<User> UserArray = Setup.userArray;
-        ArrayList<Bitmap> picture = new ArrayList<>();
-        ArrayList<ImageView> graphics = new ArrayList<>();
-        int number_of_players = UserArray.size();
-
-
-
-
-
-        for (int i=0;i<number_of_players;i++){     //Change Type String to Color in User class
-
-            /*
-            Color a = UserArray.get(i).colour;
-            imageViewIcon.setColorFilter(ContextCompat.getColor(context, a));
-            Color c = new Color(Integer.parseInt(a));
-            */
-
-
-
-        }
-        construct_wheel(number_of_players, graphics);
-        animate_wheel(graphics);
-
-    }
 }
 
 
