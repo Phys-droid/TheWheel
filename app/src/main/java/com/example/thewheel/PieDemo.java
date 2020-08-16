@@ -66,12 +66,12 @@ public class PieDemo extends AppCompatActivity {
         return data;
 
     }
-    public class MyGraphview extends View
+    public static class MyGraphview extends View
     {
         private Paint paint=new Paint(Paint.ANTI_ALIAS_FLAG);
 
         private int[] COLORS={Color.RED,Color.GREEN, Color.BLUE};
-        RectF rectf = new RectF(30, 70, 200, 200);
+        RectF rectf = new RectF(0, 0, 1000, 1000);
         int temp=0;
         public MyGraphview(Context context, float[] values) {
             super(context);
