@@ -1,49 +1,38 @@
 package com.example.thewheel;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.content.res.AppCompatResources;
-import androidx.core.content.ContextCompat;
-import androidx.core.graphics.drawable.DrawableCompat;
 
+import android.animation.AnimatorSet;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 
-import java.lang.reflect.Field;
-import java.util.ArrayList;
 import java.util.Random;
 
-import static com.example.thewheel.R.drawable.singleplayer;
-
-public class MainActivity extends AppCompatActivity {
+public class MainActivity<start> extends AppCompatActivity {
 
     //define variables
     private ImageView x;    //Throwaway_variable
     private ImageButton option_button;
-    private int[] colors;
     static int number_of_players;
     private float angle;
     private Button button_spin;
     static final Random r = new Random(System.currentTimeMillis());
     static float values[];
+    private int[] colors;
+    private String[] names;
     Boolean isTrue = Boolean.TRUE;
 
 
@@ -56,24 +45,50 @@ public class MainActivity extends AppCompatActivity {
 
         //Initiate variables
         angle = 0;
-        number_of_players = 4;
-        colors= new int[]{Color.RED, Color.GREEN, Color.BLUE, Color.BLACK};
-        values= new float[number_of_players];
-        int color = Color.parseColor("#AE6118");
 
 
+        UserList userList = SetupList.getCurrentUserList();
+        if(userList == null) {
+            number_of_players = 3;
+            colors = new int[]{Color.RED, Color.GREEN, Color.BLUE};
+            values = new float[number_of_players];
+        }
+        else{
+
+            number_of_players = userList.userArray.size();
+            values = new float[number_of_players];
+            colors = new int[number_of_players];
+            names = new String[number_of_players];
+
+            for (int i = 0; i<number_of_players; i++){
+                names[i] = userList.userArray.get(i).name;
+                colors[i] = Color.parseColor(userList.userArray.get(i).colour);
+                }
+            }
 
 
         for (int x = 0; x < number_of_players; x++) {
             values[x] = 100/number_of_players;
-            System.out.println("VALUES: " + values);
         }
 
-        final LinearLayout linear=(LinearLayout) findViewById(R.id.wheel);
+        final LinearLayout wheel=(LinearLayout) findViewById(R.id.wheel);
         values=calculateData(values);
-        linear.addView(new MyGraphview(this,values, colors));
+        wheel.addView(new MyGraphview(this,values, colors));
 
 
+        //RNG
+        int a = r.nextInt();
+        int b = r.nextInt();
+        int c = r.nextInt();
+
+        while (a<b || a<c || b<c){
+            int d = a;
+            a = b;
+            b = d;
+            d = c;
+            b = c;
+            c = d;
+        }
 
 
 
@@ -85,9 +100,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         button_spin = findViewById(R.id.button_spin);
+        final int finalA = a;
+        final int finalB = b;
+        final int finalC = c;
         button_spin.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                rotationAnimation(linear);
+                float start2 = rotationAnimation(wheel, 0, finalA);
+                float start3 = rotationAnimation(wheel, start2, finalB);
+                float end = rotationAnimation(wheel, start3, finalC);
             }
         });
     }
@@ -96,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    //________________________________________________________________________________________________________________________________________________________________________________________
+    //classes________________________________________________________________________________________________________________________________________________________________________________________
     public class MyGraphview extends View
     {
         private Paint paint=new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -109,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
             super(context);
             this.COLORS = colors;
             this.rectf = new RectF(0, 0,
-                    1090 , 1090);
+                    1080 , 1080);
 
 
         }
@@ -133,6 +153,27 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+
+
+
+
+//functions__________________________________________________________________________________________________________________________________________________________________________________________
+    private float rotationAnimation(LinearLayout animated, float start, int z) {
+        RotateAnimation a = new RotateAnimation(start, (180 + z) / 100000000, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        a.setInterpolator(new LinearInterpolator());
+        a.setDuration(3000);
+        a.setFillAfter(true);
+        animated.startAnimation(a);
+
+        return start+(180+z)/10000;
+    }
+
+
+    public void openOptions() {
+        Intent intent = new Intent(this, UserOverview.class);
+        startActivity(intent);
+    }
     private float[] calculateData(float[] data) {
         float total=0;
         for(int i=0;i<data.length;i++)
@@ -146,26 +187,6 @@ public class MainActivity extends AppCompatActivity {
         return data;
 
     }
-
-
-
-
-
-//__________________________________________________________________________________________________________________________________________________________________________________________
-    private void rotationAnimation(LinearLayout animated) {
-        RotateAnimation a = new RotateAnimation(0, (180+r.nextInt())/10000, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-        a.setInterpolator(new LinearInterpolator());
-        a.setDuration(3000);
-        a.setFillAfter(true);
-        animated.startAnimation(a);
-    }
-
-
-    public void openOptions() {
-        Intent intent = new Intent(this, UserOverview.class);
-        startActivity(intent);
-    }
-
 
 }
 
