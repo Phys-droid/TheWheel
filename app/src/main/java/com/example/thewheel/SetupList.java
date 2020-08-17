@@ -42,6 +42,7 @@ public class SetupList {
                 return setupList.get(x);
             }
         }
+        return null;
     }
 
     public static UserList getCurrentUserList() {
