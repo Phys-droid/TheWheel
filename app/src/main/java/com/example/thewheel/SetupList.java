@@ -36,5 +36,16 @@ public class SetupList {
         return null;
     }
 
+    public static UserList getSetupListById(String id) {
+        for (int x = 0; x < setupList.size(); x++) {
+            if (setupList.get(x).userListId.equals(id)) {
+                return setupList.get(x);
+            }
+        }
+        return null;
+    }
 
+    public static UserList getCurrentUserList() {
+        return getSetupListById(currentSetup);
+    }
 }
