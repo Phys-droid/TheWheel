@@ -99,9 +99,13 @@ public class MainActivity<start> extends AppCompatActivity {
         final int finalA = a;
         final int finalB = b;
         final int finalC = c;
+        // *Initialize Sound Manager
+        SoundManager.initialize(this);
         button_spin.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 start = animate_wheel(finalA,finalB,finalC, start, wheel);
+                // Play sound
+                SoundManager.michael.start();
             }
         });
     }
