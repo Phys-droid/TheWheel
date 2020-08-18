@@ -12,6 +12,8 @@ import android.graphics.RectF;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.BounceInterpolator;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.Button;
@@ -28,8 +30,8 @@ public class MainActivity<start> extends AppCompatActivity {
     private ImageButton option_button;
     static int number_of_players;
     private float angle;
+    private float start = 0;
     private Button button_spin;
-    static final Random r = new Random(System.currentTimeMillis());
     static float values[];
     private int[] colors;
     private String[] names;
@@ -63,8 +65,8 @@ public class MainActivity<start> extends AppCompatActivity {
             for (int i = 0; i<number_of_players; i++){
                 names[i] = userList.userArray.get(i).name;
                 colors[i] = Color.parseColor(userList.userArray.get(i).colour);
-                }
             }
+        }
 
 
         for (int x = 0; x < number_of_players; x++) {
@@ -77,18 +79,12 @@ public class MainActivity<start> extends AppCompatActivity {
 
 
         //RNG
-        int a = r.nextInt();
-        int b = r.nextInt();
-        int c = r.nextInt();
+        Random r = new Random(System.currentTimeMillis());
+        int range = 1000;
+        int a = r.nextInt(range);
+        int b = r.nextInt(range);
+        int c = r.nextInt(range);
 
-        while (a<b || a<c || b<c){
-            int d = a;
-            a = b;
-            b = d;
-            d = c;
-            b = c;
-            c = d;
-        }
 
 
 
@@ -105,9 +101,7 @@ public class MainActivity<start> extends AppCompatActivity {
         final int finalC = c;
         button_spin.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                float start2 = rotationAnimation(wheel, 0, finalA);
-                float start3 = rotationAnimation(wheel, start2, finalB);
-                float end = rotationAnimation(wheel, start3, finalC);
+                start = animate_wheel(finalA,finalB,finalC, start, wheel);
             }
         });
     }
@@ -158,15 +152,44 @@ public class MainActivity<start> extends AppCompatActivity {
 
 
 
-//functions__________________________________________________________________________________________________________________________________________________________________________________________
-    private float rotationAnimation(LinearLayout animated, float start, int z) {
-        RotateAnimation a = new RotateAnimation(start, (180 + z) / 100000000, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-        a.setInterpolator(new LinearInterpolator());
-        a.setDuration(3000);
-        a.setFillAfter(true);
-        animated.startAnimation(a);
+    //functions__________________________________________________________________________________________________________________________________________________________________________________________
+    private float rotationAnimation(LinearLayout animated, float start, int x, int y, int z) {
+        x = x*y*z;
 
-        return start+(180+z)/10000;
+        while (x > 1500){
+            x = x-1000;
+        }
+
+
+        AnimationSet as = new AnimationSet(true);
+        as.setFillAfter(true);
+        as.setInterpolator(new LinearInterpolator());
+
+
+        int resolution = 40;
+        int t = 90;
+        float tolerance = (float) 0.001;
+        float delta =  x;
+        int counter = 0;
+        while ((delta)>tolerance){
+            RotateAnimation anim = new RotateAnimation(start, start + delta , Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+            anim.setDuration(t);
+            anim.setStartOffset(t*counter);
+            counter += 1;
+            as.addAnimation(anim);
+            start = start+delta;
+            delta = (float) (x*Math.pow(0.95, counter));
+            anim = null;
+        }
+
+        animated.startAnimation(as);
+
+
+        return start+delta;
+    }
+
+    private float animate_wheel(int a, int b, int c, float start, LinearLayout wheel){
+        return start = rotationAnimation(wheel, start, a, b, c);
     }
 
 
@@ -189,8 +212,5 @@ public class MainActivity<start> extends AppCompatActivity {
     }
 
 }
-
-
-
 
 
