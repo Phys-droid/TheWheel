@@ -81,7 +81,7 @@ public class MainActivity<start> extends AppCompatActivity {
         //RNG
         Random r = new Random(System.currentTimeMillis());
         int range = 1000;
-        int a = r.nextInt(range);
+        float a = r.nextInt(range);
         int b = r.nextInt(range);
         int c = r.nextInt(range);
 
@@ -96,7 +96,7 @@ public class MainActivity<start> extends AppCompatActivity {
             }
         });
         button_spin = findViewById(R.id.button_spin);
-        final int finalA = a;
+        final float finalA = a;
         final int finalB = b;
         final int finalC = c;
         // *Initialize Sound Manager
@@ -157,11 +157,11 @@ public class MainActivity<start> extends AppCompatActivity {
 
 
     //functions__________________________________________________________________________________________________________________________________________________________________________________________
-    private float rotationAnimation(LinearLayout animated, float start, int x, int y, int z) {
+    private float rotationAnimation(LinearLayout animated, float start, float x, int y, int z) {
         x = x*y*z;
 
-        while (x > 1500){
-            x = x-1000;
+        while (x > 360){
+            x = x-100;
         }
 
 
@@ -170,11 +170,13 @@ public class MainActivity<start> extends AppCompatActivity {
         as.setInterpolator(new LinearInterpolator());
 
 
-        int resolution = 40;
-        int t = 90;
+        int t = 9;
         float tolerance = (float) 0.001;
         float delta =  x;
+        float x_ = 0;
         int counter = 0;
+        int counter2 = 0;
+        int exp_counter = 30;
         while ((delta)>tolerance){
             RotateAnimation anim = new RotateAnimation(start, start + delta , Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
             anim.setDuration(t);
@@ -182,17 +184,42 @@ public class MainActivity<start> extends AppCompatActivity {
             counter += 1;
             as.addAnimation(anim);
             start = start+delta;
-            delta = (float) (x*Math.pow(0.95, counter));
+            //log(strong damping)
+            if (delta/x > 0.2) {
+                delta = (float) (x*Math.pow(0.75, counter));
+                counter2 = counter;
+                x_ = delta;
+
+            }
+            //log(weak damping)
+            else if (delta/x > 0.09) {
+                delta = (float) (x_*Math.pow(0.99, counter2)*Math.pow(0.992, counter-counter2));
+                System.out.println(counter);
+            }
+            //linear(strong damping)
+            else if (delta/x > 0.05){
+                delta -= x/6500;
+
+            }
+            //linear(weak damping)
+            else if(delta/x > 0.02){
+                delta -= x/8000;
+            }
+            //-exp
+            else{
+                delta -= delta*Math.exp(exp_counter/30)/Math.exp(19);
+                exp_counter += 1;
+            }
             anim = null;
         }
 
         animated.startAnimation(as);
 
 
-        return start+delta;
+        return start;
     }
 
-    private float animate_wheel(int a, int b, int c, float start, LinearLayout wheel){
+    private float animate_wheel(float a, int b, int c, float start, LinearLayout wheel){
         return start = rotationAnimation(wheel, start, a, b, c);
     }
 
