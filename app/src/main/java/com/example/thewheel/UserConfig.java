@@ -62,7 +62,7 @@ public class UserConfig extends AppCompatActivity {
             }
         });
 
-        final Button buttonSave = findViewById(R.id.buttonNewSetup);
+        final Button buttonSave = findViewById(R.id.buttonSave);
         buttonSave.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 EditText nameBox = (EditText) findViewById(R.id.nameInput);
@@ -201,11 +201,11 @@ public class UserConfig extends AppCompatActivity {
         currentColour = editUser.colour;
         ColourRgb currentRgbColour = ColourRgb.hexToRgbConverter(editUser.colour);
         SeekBar seekBarRed = (SeekBar) findViewById(R.id.seekRed);
-        seekBarRed.setProgress(currentRgbColour.red);
+        seekBarRed.setProgress((int)(currentRgbColour.red/2.55));
         SeekBar seekBarGreen = (SeekBar) findViewById(R.id.seekGreen);
-        seekBarGreen.setProgress(currentRgbColour.green);
+        seekBarGreen.setProgress((int)(currentRgbColour.green/2.55));
         SeekBar seekBarBlue = (SeekBar) findViewById(R.id.seekBlue);
-        seekBarBlue.setProgress(currentRgbColour.blue);
+        seekBarBlue.setProgress((int)(currentRgbColour.blue/2.55));
     }
 
     private void showNewColour() {
