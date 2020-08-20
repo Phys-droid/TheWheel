@@ -6,9 +6,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -26,8 +24,7 @@ public class UserOverview extends AppCompatActivity {
         //ToDo: Think where to initialize the setup list!
         if (!StorageControl.configAlreadyExists()) {
             // ToDo: Find out what to do with new userlist
-            SetupList.addSetup(new UserList());
-            System.out.println("I DEFINETLY WASN'T HERE");
+            SetupList.addSetup(new UserList("Setup_1"));
             SoundManager.initialize(this);
         }
         else if (startUp) {
@@ -55,12 +52,19 @@ public class UserOverview extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        //Create PieDemo button
-        final Button buttonToDemo = findViewById(R.id.gotoDemo);
-        buttonToDemo.setOnClickListener(new View.OnClickListener() {
+        //Create Save button
+        final Button buttonSave = findViewById(R.id.buttonNewSetup);
+        buttonSave.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 SoundManager.togg.start();
-                Intent intent = new Intent(UserOverview.this, PieDemo.class);
+                // ToDo: Create new Page
+            }
+        });
+        final Button buttonLoad = findViewById(R.id.buttonLoad);
+        buttonLoad.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                SoundManager.togg.start();
+                Intent intent = new Intent(UserOverview.this, SetupOverview.class);
                 startActivity(intent);
             }
         });
@@ -69,7 +73,7 @@ public class UserOverview extends AppCompatActivity {
     void fillUserView() {
         //Create Array Adapter to fill in userView
         ListView userView = (ListView) findViewById(R.id.userView);
-        final ArrayList<String> nameList = SetupList.getUserList("1").getAllNames();  // ToDo: Change ID to current Setup ID
+        final ArrayList<String> nameList = SetupList.getUserList(SetupList.currentSetup).getAllNames();
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
                 this,android.R.layout.simple_list_item_1,

@@ -48,4 +48,12 @@ public class SetupList {
     public static UserList getCurrentUserList() {
         return getSetupListById(currentSetup);
     }
+
+    public static ArrayList<String> getAllSetupIds() {
+        ArrayList<String> nameList = new ArrayList();
+        for (int x = 0; x < setupList.size(); x++){
+            nameList.add(setupList.get(x).userListId);
+        }
+        return nameList;
+    }
 }

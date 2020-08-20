@@ -1,25 +1,15 @@
 package com.example.thewheel;
 
-import android.content.ClipData;
 import android.content.Intent;
-import android.content.res.Resources;
-import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.res.ResourcesCompat;
-
-import java.util.Random;
-import java.util.Set;
 
 
 public class UserConfig extends AppCompatActivity {
@@ -211,11 +201,11 @@ public class UserConfig extends AppCompatActivity {
         currentColour = editUser.colour;
         ColourRgb currentRgbColour = ColourRgb.hexToRgbConverter(editUser.colour);
         SeekBar seekBarRed = (SeekBar) findViewById(R.id.seekRed);
-        seekBarRed.setProgress(currentRgbColour.red);
+        seekBarRed.setProgress((int)(currentRgbColour.red/2.55));
         SeekBar seekBarGreen = (SeekBar) findViewById(R.id.seekGreen);
-        seekBarGreen.setProgress(currentRgbColour.green);
+        seekBarGreen.setProgress((int)(currentRgbColour.green/2.55));
         SeekBar seekBarBlue = (SeekBar) findViewById(R.id.seekBlue);
-        seekBarBlue.setProgress(currentRgbColour.blue);
+        seekBarBlue.setProgress((int)(currentRgbColour.blue/2.55));
     }
 
     private void showNewColour() {

@@ -7,10 +7,10 @@ public class UserList {
     public ArrayList<User> userArray;
     public String userListId;
 
-    public UserList() {
+    public UserList(String userlistNameOrId) {
         userListCounter += 1;
         this.userArray = new ArrayList<>();
-        this.userListId = Integer.toString(userListCounter);
+        this.userListId = userlistNameOrId;
     }
 
     public void addUser(String name, String colour) {

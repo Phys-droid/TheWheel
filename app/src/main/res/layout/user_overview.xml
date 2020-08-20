@@ -45,17 +45,17 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="88dp"
         android:layout_marginLeft="88dp"
-        android:text="buttonLoad"
+        android:text="Load Setup"
         android:soundEffectsEnabled="false"
-        app:layout_constraintStart_toEndOf="@+id/buttonSave"
-        app:layout_constraintTop_toTopOf="@+id/buttonSave" />
+        app:layout_constraintStart_toEndOf="@+id/buttonNewSetup"
+        app:layout_constraintTop_toTopOf="@+id/buttonNewSetup" />
 
     <Button
-        android:id="@+id/buttonSave"
+        android:id="@+id/buttonNewSetup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
-        android:text="Save"
+        android:text="New Setup"
         android:soundEffectsEnabled="false"
         app:layout_constraintStart_toStartOf="@+id/buttonAddUser"
         app:layout_constraintTop_toBottomOf="@+id/buttonAddUser" />
@@ -78,16 +78,5 @@
         android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="@+id/setupNumber"
         app:layout_constraintTop_toBottomOf="@+id/setupNumber" />
-
-    <Button
-        android:id="@+id/gotoDemo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="136dp"
-        android:layout_marginLeft="136dp"
-        android:text="PieDemo"
-        android:soundEffectsEnabled="false"
-        app:layout_constraintStart_toEndOf="@+id/buttonAddUser"
-        app:layout_constraintTop_toTopOf="@+id/buttonAddUser" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
