@@ -96,7 +96,7 @@ public class StorageControl {
                 }
                 if (configlines[x].equals("SETUP_ID:")) {
                     x += 1;
-                    currentUserList = new UserList();
+                    currentUserList = new UserList(configlines[x]);
                     SetupList.addSetup(currentUserList);
                 }
                 if (configlines[x].equals("USER_ID:")) {

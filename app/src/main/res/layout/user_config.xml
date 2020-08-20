@@ -51,7 +51,7 @@
         app:layout_constraintStart_toStartOf="@+id/textName" />
 
     <Button
-        android:id="@+id/buttonSave"
+        android:id="@+id/buttonNewSetup"
         android:layout_width="108dp"
         android:layout_height="48dp"
         android:layout_marginEnd="60dp"
