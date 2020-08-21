@@ -140,14 +140,18 @@ public class MainActivity<start> extends AppCompatActivity {
             paint2.setColor(Color.BLACK);
             paint2.setTextSize(62);
 
+
             for (int i = 0; i < values.length; i++) {//values2.length; i++) {
                 if (i == 0) {
                     paint.setColor(COLORS[i]);
+                    if (COLORS[i] == Color.BLACK){
+                        paint2.setColor(Color.WHITE);
+                    }
                     canvas.drawArc(rectf, angle, values[i], true, paint);
                     float alpha = (float) ((angle+(values[i]/2)));
-                    canvas.rotate(alpha, 540, 540);
+                    canvas.rotate(alpha+2, 540, 540);
                     canvas.drawText(names[i],740, 540, paint2);
-                    canvas.rotate(-alpha, 540, 540);
+                    canvas.rotate(-alpha-2, 540, 540);
 
 
                 }
@@ -155,11 +159,14 @@ public class MainActivity<start> extends AppCompatActivity {
                 {
                     temp += (int) values[i - 1];
                     paint.setColor(COLORS[i]);
+                    if (COLORS[i] == Color.BLACK){
+                        paint2.setColor(Color.WHITE);
+                    }
                     canvas.drawArc(rectf, temp + angle, values[i], true, paint);
                     float alpha = (float) ((temp+angle+(values[i]/2)));
-                    canvas.rotate(alpha, 540, 540);
+                    canvas.rotate(alpha+2, 540, 540);
                     canvas.drawText(names[i],740, 540, paint2);
-                    canvas.rotate(-alpha, 540, 540);
+                    canvas.rotate(-alpha-2, 540, 540);
                 }
             }
         }

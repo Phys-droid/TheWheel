@@ -24,7 +24,7 @@ public class UserOverview extends AppCompatActivity {
         //ToDo: Think where to initialize the setup list!
         if (!StorageControl.configAlreadyExists()) {
             // ToDo: Find out what to do with new userlist
-            SetupList.addSetup(new UserList("Setup_1"));
+            SetupList.addSetup(new UserList("1"));
             SoundManager.initialize(this);
         }
         else if (startUp) {
