@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UserConfig">
+    tools:context=".UserConfig"
+    android:background="#58643C">
 
     <TextView
         android:id="@+id/textUserConfig"
@@ -39,6 +40,8 @@
 
 
     <Button
+        android:background="#5E7A43"
+
         android:id="@+id/buttonBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -51,6 +54,8 @@
         app:layout_constraintStart_toStartOf="@+id/textName" />
 
     <Button
+        android:background="#5E7A43"
+
         android:id="@+id/buttonSave"
         android:layout_width="108dp"
         android:layout_height="48dp"
@@ -135,6 +140,7 @@
         app:layout_constraintTop_toBottomOf="@+id/rgbText" />
 
     <Button
+        android:background="#5E7A43"
         android:id="@+id/buttonDelete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -4,9 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SetupOverview">
+    tools:context=".SetupOverview"
+    android:background="#58643C"
+    >
 
     <Button
+        android:background="#5E7A43"
         android:id="@+id/buttonDeleteSetup"
         android:layout_width="39dp"
         android:layout_height="39dp"
@@ -31,6 +34,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
+        android:background="#5E7A43"
         android:id="@+id/buttonBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
