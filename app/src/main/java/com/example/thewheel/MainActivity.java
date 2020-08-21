@@ -54,6 +54,7 @@ public class MainActivity<start> extends AppCompatActivity {
             number_of_players = 3;
             colors = new int[]{Color.RED, Color.GREEN, Color.BLUE};
             values = new float[number_of_players];
+            names = new String[]{"Dima", "Päde", "Max"};
         }
         else{
 
@@ -134,17 +135,31 @@ public class MainActivity<start> extends AppCompatActivity {
         @Override
         protected void onDraw(Canvas canvas) {
             super.onDraw(canvas);
+            Paint paint2 = new Paint();
+            canvas.drawPaint(paint2);
+            paint2.setColor(Color.BLACK);
+            paint2.setTextSize(62);
 
             for (int i = 0; i < values.length; i++) {//values2.length; i++) {
                 if (i == 0) {
                     paint.setColor(COLORS[i]);
                     canvas.drawArc(rectf, angle, values[i], true, paint);
+                    float alpha = (float) ((angle+(values[i]/2)));
+                    canvas.rotate(alpha, 540, 540);
+                    canvas.drawText(names[i],740, 540, paint2);
+                    canvas.rotate(-alpha, 540, 540);
+
+
                 }
                 else
                 {
                     temp += (int) values[i - 1];
                     paint.setColor(COLORS[i]);
                     canvas.drawArc(rectf, temp + angle, values[i], true, paint);
+                    float alpha = (float) ((temp+angle+(values[i]/2)));
+                    canvas.rotate(alpha, 540, 540);
+                    canvas.drawText(names[i],740, 540, paint2);
+                    canvas.rotate(-alpha, 540, 540);
                 }
             }
         }
@@ -171,12 +186,13 @@ public class MainActivity<start> extends AppCompatActivity {
 
 
         int t = 9;
-        float tolerance = (float) 0.001;
+        float tolerance = (float) 0.000005;
         float delta =  x;
         float x_ = 0;
         int counter = 0;
         int counter2 = 0;
-        int exp_counter = 30;
+        int exp_counter = 0;
+        float x_2 = -1;
         while ((delta)>tolerance){
             RotateAnimation anim = new RotateAnimation(start, start + delta , Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
             anim.setDuration(t);
@@ -185,7 +201,7 @@ public class MainActivity<start> extends AppCompatActivity {
             as.addAnimation(anim);
             start = start+delta;
             //log(strong damping)
-            if (delta/x > 0.2) {
+            if (delta/x > 0.15) {
                 delta = (float) (x*Math.pow(0.75, counter));
                 counter2 = counter;
                 x_ = delta;
@@ -197,17 +213,19 @@ public class MainActivity<start> extends AppCompatActivity {
                 System.out.println(counter);
             }
             //linear(strong damping)
-            else if (delta/x > 0.05){
-                delta -= x/6500;
+            else if (delta/x > 0.06){
+                delta -= x/8000;
 
             }
             //linear(weak damping)
-            else if(delta/x > 0.02){
-                delta -= x/8000;
+            else if(delta/x > 0.04){
+                delta -= x/10000;
+                x_2 = delta;
             }
             //-exp
             else{
-                delta -= delta*Math.exp(exp_counter/30)/Math.exp(19);
+                //delta -= delta*Math.exp(exp_counter/30)/Math.exp(25);
+                delta = (float) (x_2*Math.pow(0.995, exp_counter));
                 exp_counter += 1;
             }
             anim = null;
