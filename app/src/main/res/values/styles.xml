@@ -8,7 +8,7 @@
     </style>
 
     <style name="ColoredHandleTheme">
-        <item name="colorControlActivated">@color/darkRed</item>
+        <item name="colorControlActivated">@color/greensilver</item>
     </style>
 
 </resources>

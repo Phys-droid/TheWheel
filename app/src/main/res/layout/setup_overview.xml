@@ -5,11 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SetupOverview"
-    android:background="#58643C"
+    android:background="@drawable/gradient"
+
     >
 
     <Button
-        android:background="#5E7A43"
+        android:background="@color/backgroundGreen"
+        android:textColor="@color/silver"
+
         android:id="@+id/buttonDeleteSetup"
         android:layout_width="39dp"
         android:layout_height="39dp"
@@ -23,6 +26,8 @@
 
     <TextView
         android:id="@+id/setupOverview"
+        android:textColor="@color/silver"
+
         android:layout_width="239dp"
         android:layout_height="69dp"
         android:layout_marginStart="60dp"
@@ -34,7 +39,9 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:background="#5E7A43"
+        android:background="@color/backgroundGreen"
+        android:textColor="@color/silver"
+
         android:id="@+id/buttonBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

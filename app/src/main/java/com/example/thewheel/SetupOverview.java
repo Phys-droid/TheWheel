@@ -1,12 +1,15 @@
 package com.example.thewheel;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -55,7 +58,15 @@ public class SetupOverview extends AppCompatActivity {
         final ArrayList<String> setupNameList = SetupList.getAllSetupIds();
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
                 this, android.R.layout.simple_list_item_1,
-                setupNameList);
+                setupNameList) {
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                View view = super.getView(position, convertView, parent);
+                TextView text = (TextView) view.findViewById(android.R.id.text1);
+                text.setTextColor(Color.parseColor("#CCD7D8"));
+                return view;
+            }
+        };
         setupView.setAdapter(arrayAdapter);
 
         // register onClickListener to handle click events on each item

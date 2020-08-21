@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".UserConfig"
-    android:background="#58643C">
+    android:background="@drawable/gradient">
+
 
     <TextView
         android:id="@+id/textUserConfig"
@@ -15,6 +16,8 @@
         android:layout_marginLeft="56dp"
         android:layout_marginTop="44dp"
         android:text="User-Configuration"
+        android:textColor="@color/silver"
+
         android:textSize="36dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -30,11 +33,11 @@
         android:theme="@style/ColoredHandleTheme"
         android:inputType="text"
         android:textCursorDrawable="@null"
-        android:textColor="#640908"
-        android:backgroundTint="#640908"
-        android:textColorHighlight="#640908"
-        android:drawableTint="#640908"
-        android:foregroundTint="#640908"
+        android:textColor="@color/silver"
+        android:backgroundTint="@color/silver"
+        android:textColorHighlight="@color/silver"
+        android:drawableTint="@color/silver"
+        android:foregroundTint="@color/silver"
         app:layout_constraintStart_toEndOf="@+id/textName"
         app:layout_constraintTop_toBottomOf="@+id/textUserConfig" />
 
@@ -45,6 +48,9 @@
         android:id="@+id/buttonBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/silver"
+        android:backgroundTint="@color/backgroundGreen"
+
         android:layout_marginStart="48dp"
         android:layout_marginLeft="48dp"
         android:layout_marginBottom="36dp"
@@ -59,6 +65,9 @@
         android:id="@+id/buttonSave"
         android:layout_width="108dp"
         android:layout_height="48dp"
+        android:textColor="@color/silver"
+        android:backgroundTint="@color/backgroundGreen"
+
         android:layout_marginEnd="60dp"
         android:layout_marginRight="60dp"
         android:text="Save"
@@ -69,6 +78,8 @@
 
     <TextView
         android:id="@+id/textName"
+        android:textColor="@color/silver"
+
         android:layout_width="82dp"
         android:layout_height="51dp"
         android:layout_marginStart="24dp"
@@ -86,10 +97,10 @@
         android:layout_marginStart="28dp"
         android:layout_marginLeft="28dp"
         android:layout_marginTop="8dp"
-        android:progressBackgroundTint="#640908"
-        android:progressTint="#640908"
+        android:progressBackgroundTint="@color/silver"
+        android:progressTint="@color/silver"
         android:scrollbarStyle="insideInset"
-        android:thumbTint="#640908"
+        android:thumbTint="@color/silver"
         app:layout_constraintStart_toEndOf="@+id/textName"
         app:layout_constraintTop_toBottomOf="@+id/textName" />
 
@@ -97,9 +108,9 @@
         android:id="@+id/seekGreen"
         android:layout_width="252dp"
         android:layout_height="65dp"
-        android:progressBackgroundTint="#640908"
-        android:progressTint="#640908"
-        android:thumbTint="#640908"
+        android:progressBackgroundTint="@color/silver"
+        android:progressTint="@color/silver"
+        android:thumbTint="@color/silver"
         app:layout_constraintStart_toStartOf="@+id/seekRed"
         app:layout_constraintTop_toBottomOf="@+id/seekRed" />
 
@@ -107,15 +118,17 @@
         android:id="@+id/seekBlue"
         android:layout_width="252dp"
         android:layout_height="57dp"
-        android:progressBackgroundTint="#640908"
-        android:progressTint="#640908"
-        android:thumbTint="#640908"
+        android:progressBackgroundTint="@color/silver"
+        android:progressTint="@color/silver"
+        android:thumbTint="@color/silver"
         app:layout_constraintStart_toStartOf="@+id/seekGreen"
         app:layout_constraintTop_toBottomOf="@+id/seekGreen" />
 
 
     <TextView
         android:id="@+id/rgbText"
+        android:textColor="@color/silver"
+
         android:layout_width="80dp"
         android:layout_height="173dp"
         android:layout_marginTop="16dp"
@@ -146,6 +159,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
         android:text="Delete"
+        android:textColor="@color/silver"
+        android:backgroundTint="@color/backgroundGreen"
+
         android:soundEffectsEnabled="false"
         app:layout_constraintStart_toStartOf="@+id/rgbText"
         app:layout_constraintTop_toBottomOf="@+id/rgbText" />

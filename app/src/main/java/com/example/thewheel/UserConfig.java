@@ -34,8 +34,7 @@ public class UserConfig extends AppCompatActivity {
 
         final Button buttonDel = findViewById(R.id.buttonDelete);
         if (currentUser == null) {
-            buttonDel.setBackgroundColor(Color.parseColor("#4E5C42"));
-            buttonDel.setTextColor(Color.parseColor("#41493B"));
+            buttonDel.setTextColor(Color.parseColor("#495642"));
         }
         buttonDel.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
