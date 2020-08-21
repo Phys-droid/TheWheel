@@ -20,11 +20,7 @@ TheWheel is developed to give people the opportunity to  randomly choose a perso
 - StorageControl: Responsible for proper file management.
 
 ## Launch & Deployment
-- Coming soon...
-
-### Setup
-- Coming soon...
-
+- Use APK file to install application
 
 ## Roadmap
 
@@ -38,7 +34,6 @@ TheWheel is developed to give people the opportunity to  randomly choose a perso
 - Add possibility of choosing different setups - DONE
 - Show Names on Wheel - DONE
 - Test Software - IN_PROGRESS
-
 
 ## Authors
 Maximilian Coco, Patrick Reich
