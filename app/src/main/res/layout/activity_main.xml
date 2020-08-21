@@ -24,8 +24,8 @@
 
     <ImageView
         android:id="@+id/Circle_of_Wheel"
-        android:layout_width="731dp"
-        android:layout_height="733dp"
+        android:layout_width="1820dp"
+        android:layout_height="1236dp"
         android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
