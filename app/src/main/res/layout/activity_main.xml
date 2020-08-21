@@ -22,18 +22,6 @@
 
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/Circle_of_Wheel"
-        android:layout_width="1820dp"
-        android:layout_height="1236dp"
-        android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/final_circle" />
-
     <ImageButton
         android:id="@+id/button_options"
         android:layout_width="wrap_content"
@@ -49,6 +37,18 @@
         app:layout_constraintVertical_bias="0.023"
         app:srcCompat="@android:drawable/ic_menu_preferences" />
 
+
+    <ImageView
+        android:id="@+id/Circle_of_Wheel"
+        android:layout_width="2015dp"
+        android:layout_height="697dp"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_options"
+        app:srcCompat="@drawable/final_circle" />
 
     <Button
         android:id="@+id/button_spin"
