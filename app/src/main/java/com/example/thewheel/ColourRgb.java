@@ -69,6 +69,14 @@ public class ColourRgb {
         }
         return (firstDec + secondDec);
     }
+
+    public static boolean isDarkColour(ColourRgb colour) {
+        int sum = colour.red + colour.green + colour.blue;
+        if (sum < 380) {
+            return true;
+        }
+        return false;
+    }
 }
 
 // Useful Sysos:

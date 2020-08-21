@@ -7,6 +7,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -23,8 +24,7 @@ public class UserOverview extends AppCompatActivity {
         //Create Setup
         //ToDo: Think where to initialize the setup list!
         if (!StorageControl.configAlreadyExists()) {
-            // ToDo: Find out what to do with new userlist
-            SetupList.addSetup(new UserList("Setup_1"));
+            SetupList.addSetup(new UserList("1"));
             SoundManager.initialize(this);
         }
         else if (startUp) {
@@ -32,7 +32,9 @@ public class UserOverview extends AppCompatActivity {
             startUp = false;
             SoundManager.initialize(this);
         }
-
+        //Write correct setup
+        final TextView setupnumber = findViewById(R.id.setupNumber);
+        setupnumber.setText("CURRENT SETUP: " + SetupList.currentSetup);
         fillUserView();
 
         final Button buttonWheel = findViewById(R.id.buttonWheel);
@@ -57,7 +59,10 @@ public class UserOverview extends AppCompatActivity {
         buttonSave.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 SoundManager.togg.start();
-                // ToDo: Create new Page
+                int newsetup = SetupList.setupList.size()+1;
+                SetupList.addSetup(new UserList(Integer.toString(newsetup)));
+                SetupList.currentSetup = Integer.toString(newsetup);
+                recreate();
             }
         });
         final Button buttonLoad = findViewById(R.id.buttonLoad);
@@ -73,6 +78,7 @@ public class UserOverview extends AppCompatActivity {
     void fillUserView() {
         //Create Array Adapter to fill in userView
         ListView userView = (ListView) findViewById(R.id.userView);
+        System.out.println("CURRR SETUP: " + SetupList.currentSetup);
         final ArrayList<String> nameList = SetupList.getUserList(SetupList.currentSetup).getAllNames();
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
@@ -87,7 +93,7 @@ public class UserOverview extends AppCompatActivity {
             // argument position gives the index of item which is clicked
             public void onItemClick(AdapterView<?> arg0, View v,int position, long arg3)
             {
-                String selectedUser =nameList.get(position);
+                String selectedUser = nameList.get(position);
                 //Toast.makeText(getApplicationContext(), "User Selected : " + selectedUser,   Toast.LENGTH_LONG).show();
                 // Change to Edit User
                 Intent intent = new Intent(UserOverview.this, UserConfig.class);

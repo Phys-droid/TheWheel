@@ -11,6 +11,7 @@ import android.widget.ListView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 public class SetupOverview extends AppCompatActivity {
     public static boolean startUp = true;
@@ -32,13 +33,24 @@ public class SetupOverview extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        final Button buttonDel = findViewById(R.id.buttonDeleteSetup);
+        buttonDel.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // ToDo: Offer option to delete certain setup
+                SetupList.removeLastSetup();
+                if (SetupList.setupList.size() == Integer.parseInt(SetupList.currentSetup) - 1) {
+                    SetupList.currentSetup = Integer.toString(Integer.parseInt(SetupList.currentSetup) - 1);
+                }
+                SoundManager.togg.start();
+                recreate();
+            }
+        });
 
     }
 
     void fillSetupView() {
         //Create Array Adapter to fill in userView
         ListView setupView = (ListView) findViewById(R.id.setupView);
-        ListView userView = (ListView) findViewById(R.id.userView);
 
         final ArrayList<String> setupNameList = SetupList.getAllSetupIds();
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(

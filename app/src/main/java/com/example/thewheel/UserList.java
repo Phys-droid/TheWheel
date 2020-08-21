@@ -37,6 +37,10 @@ public class UserList {
             nameList.add(this.userArray.get(x).name);
             //System.out.println("NAMELIST: " + nameList);
         }
+        if (nameList.size() == 0) {
+            System.out.println("I'm ZERO");
+        }
+        System.out.println("NAMELIST: " + nameList);
         return nameList;
     }
 
