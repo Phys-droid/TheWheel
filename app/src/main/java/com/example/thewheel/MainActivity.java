@@ -151,7 +151,7 @@ public class MainActivity<start> extends AppCompatActivity {
             Paint paint2 = new Paint();
             canvas.drawPaint(paint2);
             paint2.setColor(Color.BLACK);
-            paint2.setTextSize(62);
+            paint2.setTextSize(58);
             DisplayMetrics displayMetrics = new DisplayMetrics();
             getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
             int width = displayMetrics.widthPixels;
@@ -161,8 +161,13 @@ public class MainActivity<start> extends AppCompatActivity {
             for (int i = 0; i < values.length; i++) {//values2.length; i++) {
                 if (i == 0) {
                     paint.setColor(COLORS[i]);
-                    if (COLORS[i] == Color.BLACK){
-                        paint2.setColor(Color.WHITE);
+                    UserList userList = SetupList.getCurrentUserList();
+                    if (userList != null){
+                        if (ColourRgb.isDarkColour(ColourRgb.hexToRgbConverter(userList.userArray.get(i).colour))){
+                            paint2.setColor(Color.WHITE);
+
+                    }
+
                     }
                     canvas.drawArc(rectf, angle, values[i], true, paint);
                     float alpha = (float) ((angle+(values[i]/2)));
