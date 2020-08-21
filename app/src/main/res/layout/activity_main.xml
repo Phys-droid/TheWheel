@@ -9,14 +9,14 @@
 
     <LinearLayout
         android:id="@+id/wheel"
-        android:layout_width="412dp"
-        android:layout_height="412dp"
-        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal"
         android:text="NO_TEXT"
         android:textSize="26dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -24,8 +24,9 @@
 
     <ImageView
         android:id="@+id/Circle_of_Wheel"
-        android:layout_width="813dp"
-        android:layout_height="865dp"
+        android:layout_width="731dp"
+        android:layout_height="733dp"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

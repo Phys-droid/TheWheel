@@ -10,6 +10,8 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.view.Gravity;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
@@ -76,7 +78,14 @@ public class MainActivity<start> extends AppCompatActivity {
 
         final LinearLayout wheel=(LinearLayout) findViewById(R.id.wheel);
         values=calculateData(values);
-        wheel.addView(new MyGraphview(this,values, colors));
+        MyGraphview gv = new MyGraphview(this,values, colors);
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        int width = displayMetrics.widthPixels;
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width, width, Gravity.CENTER);
+        wheel.addView(gv, params);
+
+
 
 
         //RNG
@@ -127,8 +136,12 @@ public class MainActivity<start> extends AppCompatActivity {
         public MyGraphview(Context context, float[] values, int[] colors) {
             super(context);
             this.COLORS = colors;
+            DisplayMetrics displayMetrics = new DisplayMetrics();
+            getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+            int width = displayMetrics.widthPixels;
+            int size = width;
             this.rectf = new RectF(0, 0,
-                    1080 , 1080);
+                    size , size);
 
 
         }
@@ -139,6 +152,10 @@ public class MainActivity<start> extends AppCompatActivity {
             canvas.drawPaint(paint2);
             paint2.setColor(Color.BLACK);
             paint2.setTextSize(62);
+            DisplayMetrics displayMetrics = new DisplayMetrics();
+            getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+            int width = displayMetrics.widthPixels;
+            int size = width;
 
 
             for (int i = 0; i < values.length; i++) {//values2.length; i++) {
@@ -149,9 +166,9 @@ public class MainActivity<start> extends AppCompatActivity {
                     }
                     canvas.drawArc(rectf, angle, values[i], true, paint);
                     float alpha = (float) ((angle+(values[i]/2)));
-                    canvas.rotate(alpha+2, 540, 540);
-                    canvas.drawText(names[i],740, 540, paint2);
-                    canvas.rotate(-alpha-2, 540, 540);
+                    canvas.rotate(alpha+2, size/2, size/2);
+                    canvas.drawText(names[i],size/2+200, size/2, paint2);
+                    canvas.rotate(-alpha-2, size/2, size/2);
 
 
                 }
@@ -164,9 +181,9 @@ public class MainActivity<start> extends AppCompatActivity {
                     }
                     canvas.drawArc(rectf, temp + angle, values[i], true, paint);
                     float alpha = (float) ((temp+angle+(values[i]/2)));
-                    canvas.rotate(alpha+2, 540, 540);
-                    canvas.drawText(names[i],740, 540, paint2);
-                    canvas.rotate(-alpha-2, 540, 540);
+                    canvas.rotate(alpha+2, size/2, size/2);
+                    canvas.drawText(names[i],size/2+200, size/2, paint2);
+                    canvas.rotate(-alpha-2, size/2, size/2);
                 }
             }
         }
@@ -199,6 +216,9 @@ public class MainActivity<start> extends AppCompatActivity {
         int counter = 0;
         int counter2 = 0;
         int exp_counter = 0;
+        int height = animated.getHeight() / 2;
+        int width = animated.getWidth() / 2;
+
         float x_2 = -1;
         while ((delta)>tolerance){
             RotateAnimation anim = new RotateAnimation(start, start + delta , Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
