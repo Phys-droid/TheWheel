@@ -16,24 +16,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 
 public class UserOverview extends AppCompatActivity {
-    public static boolean startUp = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_overview);
 
-        //Create Setup
-        //ToDo: Think where to initialize the setup list!
-        if (!StorageControl.configAlreadyExists()) {
-            SetupList.addSetup(new UserList("1"));
-            SoundManager.initialize(this);
-        }
-        else if (startUp) {
-            StorageControl.load(findViewById(android.R.id.content).getRootView());
-            startUp = false;
-            SoundManager.initialize(this);
-        }
+
+
         //Write correct setup
         final TextView setupnumber = findViewById(R.id.setupNumber);
         setupnumber.setText("CURRENT SETUP: " + SetupList.currentSetup);

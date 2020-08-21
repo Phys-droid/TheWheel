@@ -38,6 +38,7 @@ public class MainActivity<start> extends AppCompatActivity {
     private int[] colors;
     private String[] names;
     Boolean isTrue = Boolean.TRUE;
+    public static boolean startUp = true;
 
 
 
@@ -46,6 +47,18 @@ public class MainActivity<start> extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Check if application runs first time ever, if so, create first Setup
+        if (!StorageControl.configAlreadyExists()) {
+            SetupList.addSetup(new UserList("1"));
+        }
+        //Else check if App just started
+        else if (startUp) {
+            //Load data into temp Storage
+            StorageControl.load(findViewById(android.R.id.content).getRootView());
+            startUp = false;
+        }
+        SoundManager.initialize(this);
 
         //Initiate variables
         angle = 0;
@@ -110,7 +123,6 @@ public class MainActivity<start> extends AppCompatActivity {
         final int finalB = b;
         final int finalC = c;
         // *Initialize Sound Manager
-        SoundManager.initialize(this);
         button_spin.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 start = animate_wheel(finalA,finalB,finalC, start, wheel);

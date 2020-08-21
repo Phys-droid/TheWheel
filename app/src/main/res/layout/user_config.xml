@@ -34,7 +34,7 @@
         android:inputType="text"
         android:textCursorDrawable="@null"
         android:textColor="@color/silver"
-        android:backgroundTint="@color/silver"
+        android:backgroundTint="@color/greensilver"
         android:textColorHighlight="@color/silver"
         android:drawableTint="@color/silver"
         android:foregroundTint="@color/silver"
