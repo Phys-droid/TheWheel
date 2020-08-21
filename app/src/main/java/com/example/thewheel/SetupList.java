@@ -14,6 +14,10 @@ public class SetupList {
         setupList.add(newUserList);
     }
 
+    public static void removeLastSetup() {
+        setupList.remove(setupList.size()-1);
+    }
+
     public static UserList getUserList(String id) {
         for (int x = 0; x < setupList.size(); x++) {
             //System.out.println(setupList.get(x).userListId);

@@ -4,7 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UserOverview">
+    tools:context=".UserOverview"
+    android:background="#58643C">
+
+
 
     <TextView
         android:id="@+id/userOverview"
@@ -28,6 +31,7 @@
         app:layout_constraintTop_toBottomOf="@+id/userOverview" />
 
     <Button
+        android:background="#5E7A43"
         android:id="@+id/buttonWheel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -40,6 +44,8 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
+        android:background="#5E7A43"
+
         android:id="@+id/buttonLoad"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -51,6 +57,7 @@
         app:layout_constraintTop_toTopOf="@+id/buttonNewSetup" />
 
     <Button
+        android:background="#5E7A43"
         android:id="@+id/buttonNewSetup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -61,6 +68,8 @@
         app:layout_constraintTop_toBottomOf="@+id/buttonAddUser" />
 
     <Button
+        android:background="#5E7A43"
+
         android:id="@+id/buttonAddUser"
         android:layout_width="39dp"
         android:layout_height="36dp"

@@ -18,6 +18,7 @@ public class StorageControl {
     public static void save(View currentView, String filename) {
         Context currentContext = currentView.getContext();
         String filenameExternal = filename;
+        String currentSetupRem = SetupList.currentSetup;
 
         //Checking the availability state of the External Storage.
         String state = Environment.getExternalStorageState();
@@ -36,35 +37,37 @@ public class StorageControl {
 
             // Here the writing process takes place
             outputStream = new FileOutputStream(file, false);
+            writeLine("NUMBER_OF_SETUPS:", outputStream);
+            writeLine(Integer.toString(SetupList.setupList.size()), outputStream);
+            writeLine("NUMBER_OF_USERS:", outputStream);
+            writeLine(Integer.toString(User.userCounter), outputStream);
+            System.out.println("SETUPLIST SIZEOF: " + SetupList.setupList.size());
+            writeLine("CURRENT_SETUP_ID:", outputStream);
+            writeLine(SetupList.currentSetup, outputStream);
             for (int x = 0; x < SetupList.setupList.size(); x++) {
                 UserList currentUserList = SetupList.setupList.get(x);
-                writeLine("NUMBER_OF_SETUPS:", outputStream);
-                writeLine(Integer.toString(SetupList.setupList.size()), outputStream);
-                writeLine("NUMBER_OF_USERS:", outputStream);
-                writeLine(Integer.toString(User.userCounter), outputStream);
-                writeLine("CURRENT_SETUP_ID:", outputStream);
-                writeLine(SetupList.currentSetup, outputStream);
                 if (currentUserList != null) {
                     SetupList.currentSetup = currentUserList.userListId;
                     writeLine("SETUP_ID:", outputStream);
                     writeLine(SetupList.currentSetup, outputStream);
-                    for (int y = 0; x < currentUserList.getArraySize(); x++) {
+                    for (int y = 0; y < currentUserList.getArraySize(); y++) {
                         writeLine("USER_ID:", outputStream);
-                        writeLine(currentUserList.userArray.get(x).id, outputStream);
+                        writeLine(currentUserList.userArray.get(y).id, outputStream);
                         writeLine("USER_NAME:", outputStream);
-                        writeLine(currentUserList.userArray.get(x).name, outputStream);
+                        writeLine(currentUserList.userArray.get(y).name, outputStream);
                         writeLine("USER_COLOUR:", outputStream);
-                        writeLine(currentUserList.userArray.get(x).colour,outputStream);
+                        writeLine(currentUserList.userArray.get(y).colour,outputStream);
                     }
 
-                    System.out.println("SUCCESFULLY WRITTEN: " + file);
-                    outputStream.flush();
-                    outputStream.close();
                 }
             }
+            System.out.println("SUCCESFULLY WRITTEN: " + file);
+            outputStream.flush();
+            outputStream.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
+        SetupList.currentSetup = currentSetupRem;
     }
 
     public static void load(View currentView) {

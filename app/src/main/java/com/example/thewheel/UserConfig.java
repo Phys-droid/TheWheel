@@ -15,7 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class UserConfig extends AppCompatActivity {
 
     public static User currentUser = null;
-    public static String currentColour = "#000000"; // ToDo: Add correct colour in beginning
+    public static String currentColour = "#000000";
 
 
     @Override
@@ -34,8 +34,8 @@ public class UserConfig extends AppCompatActivity {
 
         final Button buttonDel = findViewById(R.id.buttonDelete);
         if (currentUser == null) {
-            buttonDel.setBackgroundColor(Color.parseColor("#EFEFEF"));
-            buttonDel.setTextColor(Color.parseColor("#C7C7C7"));
+            buttonDel.setBackgroundColor(Color.parseColor("#4E5C42"));
+            buttonDel.setTextColor(Color.parseColor("#41493B"));
         }
         buttonDel.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -47,6 +47,7 @@ public class UserConfig extends AppCompatActivity {
                 View currentFocus = findViewById(android.R.id.content).getRootView();
                 StorageControl.save(currentFocus, "Wheel_Config.txt");
                 SoundManager.togg.start();
+                currentUser = null;
                 Intent intent = new Intent(UserConfig.this, UserOverview.class);
                 startActivity(intent);
             }
@@ -159,7 +160,7 @@ public class UserConfig extends AppCompatActivity {
 
 
     private void saveNameAndColour(String username, String colour) {
-        UserList currentUserList = SetupList.getUserList(Integer.toString(1)); // ToDo: Change to id of current setup/userlist
+        UserList currentUserList = SetupList.getUserList(SetupList.currentSetup);
         //System.out.println("---CURRENTLIST:--- " + currentUserList.userListId);
         currentUserList.addUser(username, colour);
         //System.out.println("BEFORE: " + currentUserList.getUser("1").name);
@@ -170,7 +171,6 @@ public class UserConfig extends AppCompatActivity {
     }
 
     private void updateNameAndColour(String username, String colour) {
-        // ToDo: Properly update the users fields
         SetupList.searchAllListsByName(currentUser.name).updateUser(username, colour);
         currentUser = null;
     }
@@ -189,7 +189,6 @@ public class UserConfig extends AppCompatActivity {
 
     private void createNewUserMenu() {
         //Auto fill in some color
-        // ToDo: Make color random
         EditText nameBox = (EditText) findViewById(R.id.nameInput);
         nameBox.setText("");
         currentColour = ColourRgb.rgbToHexConverter(new ColourRgb(0,0,0));

@@ -33,9 +33,11 @@ TheWheel is developed to give people the opportunity to  randomly choose a perso
 - Add possibilty to store and edit Users - DONE
 - Add possiblity to save and load configurations in files - DONE
 - Add possiblity to choose RGB value - DONE
-- Fill in wheel with appropiate colours - IN_PROGRESS
-- Make Wheel turn in an interesting way - IN_PROGRESS
-- Add possibility of choosing different setups - IN_PROGRESS
+- Fill in wheel with appropiate colours - DONE
+- Make Wheel turn in an interesting way - DONE
+- Add possibility of choosing different setups - DONE
+- Show Names on Wheel - IN_PROGRESS
+- Test Software - IN_PROGRESS
 
 
 ## Authors
