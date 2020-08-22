@@ -168,27 +168,52 @@ public class MainActivity<start> extends AppCompatActivity {
             getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
             int width = displayMetrics.widthPixels;
             int size = width;
+            float alpha;
 
 
             for (int i = 0; i < values.length; i++) {//values2.length; i++) {
-
-                temp += (int) values[i];
-                paint.setColor(COLORS[i]);
-                UserList userList = SetupList.getCurrentUserList();
-                if (userList != null){
-                    if (ColourRgb.isDarkColour(ColourRgb.hexToRgbConverter(userList.userArray.get(i).colour))){
-                        paint2.setColor(Color.WHITE);
+                if (i == i) {
+                    paint.setColor(COLORS[i]);
+                    UserList userList = SetupList.getCurrentUserList();
+                    if (userList != null){
+                        if (ColourRgb.isDarkColour(ColourRgb.hexToRgbConverter(userList.userArray.get(i).colour))){
+                            paint2.setColor(Color.WHITE);
+                    }
+                        else{
+                            paint2.setColor(Color.BLACK);
+                        }
 
                     }
+                    if (i == 0){
+                        canvas.drawArc(rectf, angle, values[i], true, paint);
+                        alpha = (float) ((angle+(values[i]/2)));
+                    }
+                    else {
+                        canvas.drawArc(rectf, temp + angle, values[i], true, paint);
+                        alpha = (float) ((temp+angle+(values[i]/2)));
+                    }
+
+
+                    canvas.rotate(alpha+2, size/2, size/2);
+                    canvas.drawText(names[i],size/2+200, size/2, paint2);
+                    canvas.rotate(-alpha-2, size/2, size/2);
+
+                    temp += (int) values[i];
 
                 }
-                canvas.drawArc(rectf, angle, values[i], true, paint);
-                float alpha = (float) ((angle+(values[i]/2)));
-                canvas.rotate(alpha+2, size/2, size/2);
-                canvas.drawText(names[i],size/2+200, size/2, paint2);
-                canvas.rotate(-alpha-2, size/2, size/2);
-
-
+                else
+                {
+                    temp += (int) values[i - 1];
+                    paint.setColor(COLORS[i]);
+                    if (COLORS[i] == Color.BLACK){
+                        paint2.setColor(Color.WHITE);
+                    }
+                    canvas.drawArc(rectf, temp + angle, values[i], true, paint);
+                    alpha = (float) ((temp+angle+(values[i]/2)));
+                    canvas.rotate(alpha+2, size/2, size/2);
+                    canvas.drawText(names[i],size/2+200, size/2, paint2);
+                    canvas.rotate(-alpha-2, size/2, size/2);
+                }
             }
         }
 
