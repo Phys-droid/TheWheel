@@ -68,27 +68,27 @@
         android:id="@+id/buttonNewSetup"
         android:layout_width="103dp"
         android:layout_height="46dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="20dp"
         android:background="#5E7A43"
+        android:backgroundTint="@color/backgroundGreen"
         android:soundEffectsEnabled="false"
         android:text="New Setup"
-        android:backgroundTint="@color/backgroundGreen"
         android:textColor="@color/silver"
 
         app:layout_constraintStart_toStartOf="@+id/buttonAddUser"
         app:layout_constraintTop_toBottomOf="@+id/buttonAddUser" />
 
     <Button
-        android:background="#5E7A43"
-        android:backgroundTint="@color/backgroundGreen"
         android:id="@+id/buttonAddUser"
         android:layout_width="39dp"
         android:layout_height="36dp"
-        android:layout_marginTop="40dp"
-        android:text="+"
-        android:textColor="@color/silver"
-
+        android:layout_marginTop="24dp"
+        android:background="#5E7A43"
+        android:backgroundTint="@color/backgroundGreen"
         android:soundEffectsEnabled="false"
+        android:text="+"
+
+        android:textColor="@color/silver"
         app:layout_constraintStart_toStartOf="@+id/userView"
         app:layout_constraintTop_toBottomOf="@+id/userView" />
 

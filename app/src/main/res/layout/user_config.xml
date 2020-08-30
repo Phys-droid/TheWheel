@@ -12,9 +12,9 @@
         android:id="@+id/textUserConfig"
         android:layout_width="317dp"
         android:layout_height="80dp"
-        android:layout_marginStart="56dp"
-        android:layout_marginLeft="56dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginLeft="52dp"
+        android:layout_marginTop="16dp"
         android:text="User-Configuration"
         android:textColor="@color/silver"
 
@@ -43,19 +43,19 @@
 
 
     <Button
-        android:background="#5E7A43"
-
         android:id="@+id/buttonBack"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/silver"
-        android:backgroundTint="@color/backgroundGreen"
-
         android:layout_marginStart="48dp"
         android:layout_marginLeft="48dp"
-        android:layout_marginBottom="36dp"
-        android:text="Back"
+        android:layout_marginBottom="76dp"
+
+        android:background="#5E7A43"
+        android:backgroundTint="@color/backgroundGreen"
         android:soundEffectsEnabled="false"
+        android:text="Back"
+        android:textColor="@color/silver"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/textName" />
 
@@ -143,7 +143,7 @@
         android:layout_height="160dp"
         android:layout_marginStart="116dp"
         android:layout_marginLeft="116dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="4dp"
         android:background="@drawable/colour_circle"
         android:gravity="center"
         android:orientation="horizontal"
@@ -153,16 +153,16 @@
         app:layout_constraintTop_toBottomOf="@+id/rgbText" />
 
     <Button
-        android:background="#5E7A43"
         android:id="@+id/buttonDelete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:text="Delete"
-        android:textColor="@color/silver"
+        android:layout_marginTop="20dp"
+        android:background="#5E7A43"
         android:backgroundTint="@color/backgroundGreen"
-
         android:soundEffectsEnabled="false"
+        android:text="Delete"
+
+        android:textColor="@color/silver"
         app:layout_constraintStart_toStartOf="@+id/rgbText"
         app:layout_constraintTop_toBottomOf="@+id/rgbText" />
 
