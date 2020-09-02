@@ -12,6 +12,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
@@ -36,13 +37,18 @@ public class MainActivity<start> extends AppCompatActivity {
     private ImageButton option_button;
     static int number_of_players;
     private float angle;
+    private double time;
     private float start = 0;
     private Button button_spin;
+    private ImageButton sound_button;
     static float values[];
     private int[] colors;
     private String[] names;
     Boolean isTrue = Boolean.TRUE;
+    Boolean sound = Boolean.TRUE;
+
     public static boolean startUp = true;
+
 
 
 
@@ -71,6 +77,7 @@ public class MainActivity<start> extends AppCompatActivity {
 
         //Initiate variables
         angle = 0;
+
 
 
         UserList userList = SetupList.getCurrentUserList();
@@ -128,15 +135,38 @@ public class MainActivity<start> extends AppCompatActivity {
             }
         });
         button_spin = findViewById(R.id.button_spin);
+        sound_button = findViewById(R.id.soundbutton);
+        sound_button.setImageResource(R.drawable.sound_on);
+        sound_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (sound == Boolean.TRUE){
+                    sound = Boolean.FALSE;
+                    sound_button.setImageResource(R.drawable.sound_off);
+                    SoundManager.michael.pause();
+                    SoundManager.michael.setVolume(0, 0);
+                }
+                else{
+                    sound = Boolean.TRUE;
+                    sound_button.setImageResource(R.drawable.sound_on);
+                    SoundManager.michael.setVolume(1, 1);
+                    SoundManager.michael.start();
+                }
+            }
+        });
         final float finalA = a;
         final int finalB = b;
         final int finalC = c;
         // *Initialize Sound Manager
         button_spin.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                start = animate_wheel(finalA,finalB,finalC, start, wheel);
+                time = animate_wheel(finalA,finalB,finalC, start, wheel);
                 // Play sound
-                SoundManager.michael.start();
+                if (sound == Boolean.TRUE){
+                    SoundManager.michael.start();
+
+                }
+
             }
         });
     }
@@ -242,7 +272,7 @@ public class MainActivity<start> extends AppCompatActivity {
 
 
     //functions__________________________________________________________________________________________________________________________________________________________________________________________
-    private float rotationAnimation(LinearLayout animated, float start, float x, int y, int z) {
+    private double rotationAnimation(LinearLayout animated, float start, float x, int y, int z) {
         x = x*y*z;
 
         while (x > 360){
@@ -264,11 +294,13 @@ public class MainActivity<start> extends AppCompatActivity {
         int exp_counter = 0;
         int height = animated.getHeight() / 2;
         int width = animated.getWidth() / 2;
+        double t_tot = 0;
 
         float x_2 = -1;
         while ((delta)>tolerance){
             RotateAnimation anim = new RotateAnimation(start, start + delta , Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
             anim.setDuration(t);
+            t_tot += t;
             anim.setStartOffset(t*counter);
             counter += 1;
             as.addAnimation(anim);
@@ -307,11 +339,11 @@ public class MainActivity<start> extends AppCompatActivity {
         animated.startAnimation(as);
 
 
-        return start;
+        return t_tot;
     }
 
-    private float animate_wheel(float a, int b, int c, float start, LinearLayout wheel){
-        return start = rotationAnimation(wheel, start, a, b, c);
+    private double animate_wheel(float a, int b, int c, float start, LinearLayout wheel){
+        return time = rotationAnimation(wheel, start, a, b, c);
     }
 
 
@@ -331,6 +363,15 @@ public class MainActivity<start> extends AppCompatActivity {
         }
         return data;
 
+    }
+
+    private void swapstate(Boolean a){
+        if (a == Boolean.TRUE){
+            a = Boolean.FALSE;
+        }
+        else{
+            a = Boolean.TRUE;
+        }
     }
 
 }

@@ -10,12 +10,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".UserConfig">    </activity>
-        <activity android:name=".UserOverview">  </activity>
-        <activity android:name=".PieDemo">  </activity>
-        <activity android:name=".SetupOverview">  </activity>
-        <activity android:name=".SetupConfig">  </activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".UserConfig"
+            android:screenOrientation="portrait">
+            >    </activity>
+        <activity android:name=".UserOverview"
+            android:screenOrientation="portrait">
+            >  </activity>
+        <activity android:name=".PieDemo"
+            android:screenOrientation="portrait">
+            >  </activity>
+        <activity android:name=".SetupOverview"
+            android:screenOrientation="portrait">
+            >  </activity>
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait">
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
