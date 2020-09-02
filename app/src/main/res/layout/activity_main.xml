@@ -11,9 +11,9 @@
         android:id="@+id/wheel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/intergreen"
         android:gravity="center"
         android:orientation="horizontal"
-        android:background="@color/intergreen"
         android:text="NO_TEXT"
         android:textSize="26dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -25,20 +25,6 @@
     </LinearLayout>
 
 
-    <Button
-        android:id="@+id/button_spin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Spin!"
-        android:background="@color/intergreen"
-        android:textColor="@color/silver"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.918" />
-
     <ImageView
         android:id="@+id/Circle_of_Wheel"
         android:layout_width="682dp"
@@ -49,23 +35,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/final_circle" />
-
-    <ImageButton
-        android:id="@+id/button_options"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:visibility="visible"
-        android:background="@color/backgroundGreen"
-        android:textColor="@color/silver"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.954"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023"
-        app:srcCompat="@android:drawable/ic_menu_preferences" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -103,6 +72,19 @@
         app:layout_constraintGuide_begin="20dp" />
 
     <ImageButton
+        android:id="@+id/button_spin"
+        android:layout_width="1140dp"
+        android:layout_height="1226dp"
+        android:background="#00FFFFFF"
+        android:tint="#00A83D3D"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/nothing" />
+
+    <ImageButton
         android:id="@+id/soundbutton"
         android:layout_width="56dp"
         android:layout_height="36dp"
@@ -115,5 +97,22 @@
         app:layout_constraintTop_toBottomOf="@+id/button_options"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/sound_off" />
+
+    <ImageButton
+        android:id="@+id/button_options"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@color/backgroundGreen"
+        android:textColor="@color/silver"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.954"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023"
+        app:srcCompat="@android:drawable/ic_menu_preferences" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

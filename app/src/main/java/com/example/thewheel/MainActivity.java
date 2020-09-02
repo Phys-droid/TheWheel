@@ -39,7 +39,7 @@ public class MainActivity<start> extends AppCompatActivity {
     private float angle;
     private double time;
     private float start = 0;
-    private Button button_spin;
+    private ImageButton button_spin;
     private ImageButton sound_button;
     static float values[];
     private int[] colors;
