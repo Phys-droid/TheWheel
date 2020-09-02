@@ -12,8 +12,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.Set;
-
 
 public class UserConfig extends AppCompatActivity {
 
@@ -45,7 +43,7 @@ public class UserConfig extends AppCompatActivity {
                     return;
                 }
                 UserList currentUserList = SetupList.getUserList(SetupList.currentSetup);
-                currentUserList.deleteUserById(currentUser.id);
+                currentUserList.deleteUserByName(currentUser.name);
                 View currentFocus = findViewById(android.R.id.content).getRootView();
                 StorageControl.save(currentFocus, "Wheel_Config.txt");
                 SoundManager.togg.start();
@@ -69,8 +67,7 @@ public class UserConfig extends AppCompatActivity {
         buttonSave.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 EditText nameBox = (EditText) findViewById(R.id.nameInput);
-
-
+                //System.out.println("CURRENTUSERIS: " + currentUser);
 
 
                 if (currentUser != null) {
@@ -78,11 +75,18 @@ public class UserConfig extends AppCompatActivity {
                         return;
                     }
                     updateNameAndColour(nameBox.getText().toString(), currentColour);
-                } else {
-                    if (!checkInput(nameBox, true))
-                    saveNameAndColour(nameBox.getText().toString(), currentColour);
-                        return;
                 }
+                    else {
+                        if (!checkInput(nameBox, true)) {
+                        return;
+                    }
+                    else {
+                            saveNameAndColour(nameBox.getText().toString(), currentColour);
+                        }
+
+                    }
+
+
                 // ToDo: Move saving
                 SoundManager.togg.start();
                 View currentFocus = findViewById(android.R.id.content).getRootView();
@@ -198,6 +202,7 @@ public class UserConfig extends AppCompatActivity {
     private void saveNameAndColour(String username, String colour) {
         UserList currentUserList = SetupList.getUserList(SetupList.currentSetup);
         //System.out.println("---CURRENTLIST:--- " + currentUserList.userListId);
+
         currentUserList.addUser(username, colour);
         //System.out.println("BEFORE: " + currentUserList.getUser("1").name);
         //Remove if done
@@ -207,13 +212,10 @@ public class UserConfig extends AppCompatActivity {
     }
 
     private void updateNameAndColour(String username, String colour) {
-        SetupList.searchAllListsByName(currentUser.name).updateUser(username, colour);
+        SetupList.getCurrentUserList().getUserByName(currentUser.name).updateUser(username, colour);
         currentUser = null;
     }
 
-    String showPreferences() {
-        return SetupList.getUserList("1").getUserById("1").name; //ToDo: Update or remove this method
-    }
 
     private boolean checkForCurrentUser() {
         boolean CurrentUserExists = false;

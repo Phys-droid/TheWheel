@@ -9,7 +9,9 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.nio.charset.Charset;
 import java.util.Set;
 
 public class StorageControl {
@@ -41,7 +43,7 @@ public class StorageControl {
             writeLine(Integer.toString(SetupList.setupList.size()), outputStream);
             writeLine("NUMBER_OF_USERS:", outputStream);
             writeLine(Integer.toString(User.userCounter), outputStream);
-            System.out.println("SETUPLIST SIZEOF: " + SetupList.setupList.size());
+            //System.out.println("SETUPLIST SIZEOF: " + SetupList.setupList.size());
             writeLine("CURRENT_SETUP_ID:", outputStream);
             writeLine(SetupList.currentSetup, outputStream);
             for (int x = 0; x < SetupList.setupList.size(); x++) {
@@ -61,7 +63,7 @@ public class StorageControl {
 
                 }
             }
-            System.out.println("SUCCESFULLY WRITTEN: " + file);
+            //System.out.println("SUCCESFULLY WRITTEN: " + file);
             outputStream.flush();
             outputStream.close();
         } catch (Exception e) {
@@ -72,18 +74,23 @@ public class StorageControl {
 
     public static void load(View currentView) {
         if (!configAlreadyExists()) {
-            System.out.println("File does not exist. Can't load!");
+            //System.out.println("File does not exist. Can't load!");
             return;
         }
         File file = new File(Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_DOWNLOADS), configname);
         try {
+
             InputStream inputStream = new FileInputStream(file);
-            String configtext = readText(inputStream);
+            InputStreamReader reader = new InputStreamReader(inputStream, Charset.forName("UTF-8"));
+
+            //String configtext2 = readText(inputStream);
+            String  configtext = readText(reader);
             String[] configlines = configtext.split(System.getProperty("line.separator"));
             String currentName = null;
             String currentColour = null;
             UserList currentUserList = null;
+           // System.out.println("CONFIGTEXT: " + configtext2 + " ReadText: " + configtext );
 
             for (int x = 0; x < configlines.length; x++) {
                 //System.out.println("Configline[x]: " + configlines[x]);
@@ -113,7 +120,7 @@ public class StorageControl {
                     x += 1;
                     currentColour = configlines[x];
                     // Save User
-                    System.out.println("CURRENT_USERLIST_ID: " + currentUserList.userListId);
+                    //System.out.println("CURRENT_USERLIST_ID: " + currentUserList.userListId);
                     currentUserList.addUser(currentName, currentColour);
                     //System.out.println("CURRENT_USER_ID: " + currentUserList.getUserByName("HERRO").id);
                 }
@@ -125,17 +132,17 @@ public class StorageControl {
     }
 
     public static void writeLine(String line, OutputStream outputStream) throws IOException {
-        outputStream.write((line + "\n").getBytes());
+        outputStream.write((line + "\n").getBytes("UTF8"));
     }
 
-    public static String readText(InputStream inputStream) throws IOException {
+    public static String readText(InputStreamReader inputStream) throws IOException {
         int nextByte;
         String text = "";
         while ((nextByte = inputStream.read()) != -1) {
             //System.out.println("IN WHILE: " + text);
             text += (char)nextByte;
         }
-        System.out.println("TEXT: " + text);
+        //System.out.println("TEXT: " + text);
         return text;
     }
 

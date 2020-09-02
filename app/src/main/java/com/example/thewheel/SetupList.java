@@ -1,4 +1,6 @@
 package com.example.thewheel;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -6,7 +8,7 @@ import java.util.Objects;
 public class SetupList {
     //ToDo: Make SetupList read in files and save lists to file, with help of StorageControl
 
-    public static String currentSetup = "1";
+    public static String currentSetup = "Setup 1";
 
     public static ArrayList<UserList> setupList = new ArrayList<>();
 
@@ -21,8 +23,6 @@ public class SetupList {
     public static boolean removeSetupByName(String setupName) {
         if (currentSetup.equals(setupName)) {
             if (setupList.size() == 1) {
-                // ToDo: Make toast
-                System.out.println("LAST SETUPLIST, CANNOT DELETE!!!");
                 return false;
             }
             currentSetup = getSomeSetupName();
@@ -45,13 +45,13 @@ public class SetupList {
 
     public static UserList getUserList(String id) {
         for (int x = 0; x < setupList.size(); x++) {
-            System.out.println("HI: " + setupList.get(x).userListId);
+            //System.out.println("HI: " + setupList.get(x).userListId);
             if (setupList.get(x).userListId.equals(id)) {
 
                 return setupList.get(x);
             }
         }
-        System.out.println("Specified userList not found!");
+        //System.out.println("Specified userList not found!");
         return null; // Would be better to return empty list, shouldn't return null
     }
 

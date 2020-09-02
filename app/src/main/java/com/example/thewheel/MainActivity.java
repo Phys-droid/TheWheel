@@ -66,7 +66,8 @@ public class MainActivity<start> extends AppCompatActivity {
 
         //Check if application runs first time ever, if so, create first Setup
         if (!StorageControl.configAlreadyExists()) {
-            SetupList.addSetup(new UserList("1"));
+            SetupList.addSetup(new UserList("Setup 1"));
+            startUp = false;
         }
         //Else check if App just started
         else if (startUp) {

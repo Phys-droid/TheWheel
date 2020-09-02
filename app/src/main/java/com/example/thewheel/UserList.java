@@ -15,7 +15,7 @@ public class UserList {
 
     public void addUser(String name, String colour) {
         User newUser = new User(name, colour);
-        System.out.println("My Name: " + newUser.name);
+        //System.out.println("My Name: " + newUser.name);
         this.userArray.add(newUser);
     }
 
@@ -27,7 +27,7 @@ public class UserList {
                 return this.userArray.get(x);
             }
         }
-        System.out.println("Specified user not found!"); // Would be better to return empty list, shouldn't return null
+        //System.out.println("Specified user not found!"); // Would be better to return empty list, shouldn't return null
         return null;
     }
 
@@ -38,9 +38,10 @@ public class UserList {
             //System.out.println("NAMELIST: " + nameList);
         }
         if (nameList.size() == 0) {
-            System.out.println("I'm ZERO");
+            // Do nothing
+            //System.out.println("I'm ZERO");
         }
-        System.out.println("NAMELIST: " + nameList);
+        //System.out.println("NAMELIST: " + nameList);
         return nameList;
     }
 
@@ -50,12 +51,12 @@ public class UserList {
                 return this.userArray.get(x);
             }
         }
-        System.out.println("This username doesn't exist!");
+        //System.out.println("This username doesn't exist!");
         return null;
     }
 
-    public void deleteUserById(String id) {
-        this.userArray.remove(getUserById(id));
+    public void deleteUserByName(String name) {
+        this.userArray.remove(getUserByName(name));
     }
 
     public int getArraySize() {

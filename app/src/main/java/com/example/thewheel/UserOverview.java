@@ -24,7 +24,7 @@ public class UserOverview extends AppCompatActivity {
 
         //Write correct setup
         final TextView setupnumber = findViewById(R.id.setupNumber);
-        setupnumber.setText("CURRENT SETUP: " + SetupList.currentSetup);
+        setupnumber.setText("Current Setup: " + SetupList.currentSetup);
         fillUserView();
 
         final Button buttonWheel = findViewById(R.id.buttonWheel);
@@ -57,7 +57,7 @@ public class UserOverview extends AppCompatActivity {
     void fillUserView() {
         //Create Array Adapter to fill in userView
         ListView userView = (ListView) findViewById(R.id.userView);
-        System.out.println("CURRR SETUP: " + SetupList.currentSetup);
+        //System.out.println("CURRR SETUP: " + SetupList.currentSetup);
         final ArrayList<String> nameList = SetupList.getUserList(SetupList.currentSetup).getAllNames();
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
@@ -86,7 +86,7 @@ public class UserOverview extends AppCompatActivity {
                 // Change to Edit User
                 Intent intent = new Intent(UserOverview.this, UserConfig.class);
                 //System.out.println("A USER HAS BEEN CLICKED");
-                UserConfig.currentUser = SetupList.searchAllListsByName(selectedUser);
+                UserConfig.currentUser =  SetupList.getCurrentUserList().getUserByName(selectedUser);
                 //System.out.println("SEARCH USERS: " + UserConfig.currentUser);
                 startActivity(intent);
             }

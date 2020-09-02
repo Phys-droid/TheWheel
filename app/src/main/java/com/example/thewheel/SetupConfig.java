@@ -39,7 +39,10 @@ public class SetupConfig extends AppCompatActivity {
                 if (SetupList.currentSetup == null) {
                     return;
                 }
-                SetupList.removeSetupByName(SetupList.currentSetup);
+                if (!SetupList.removeSetupByName(SetupList.currentSetup)) {
+                    Toast.makeText(SetupConfig.this, "Cannot delete the last setup!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 View currentFocus = findViewById(android.R.id.content).getRootView();
                 StorageControl.save(currentFocus, "Wheel_Config.txt");
                 SoundManager.togg.start();
@@ -109,8 +112,8 @@ public class SetupConfig extends AppCompatActivity {
         }
         SetupList setuplist;
         for (int i = 0; i < SetupList.setupList.size(); i++){
-            System.out.println("CURRENT USERLIST ID: " + SetupList.setupList.get(i).userListId);
-            System.out.println("CURRENT USERLIST ID FIRST PART: " +  SetupList.setupList.get(i).userListId);
+            //System.out.println("CURRENT USERLIST ID: " + SetupList.setupList.get(i).userListId);
+            //System.out.println("CURRENT USERLIST ID FIRST PART: " +  SetupList.setupList.get(i).userListId);
             if (!isNotNull) {
                 if ( SetupList.setupList.get(i).userListId.equals(nameBox.getText().toString())) {
                     Toast.makeText(SetupConfig.this, "This Setup already exists!", Toast.LENGTH_SHORT).show();
