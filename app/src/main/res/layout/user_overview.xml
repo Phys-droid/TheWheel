@@ -43,7 +43,7 @@
         android:background="#3C753C"
         android:backgroundTint="#0F360F"
         android:soundEffectsEnabled="false"
-        android:text="Wheel"
+        android:text="Goto Wheel"
         android:textColor="@color/silver"
 
         app:layout_constraintStart_toEndOf="@+id/userOverview"
@@ -51,43 +51,31 @@
 
     <Button
         android:id="@+id/buttonLoad"
-        android:backgroundTint="@color/backgroundGreen"
-        android:layout_width="105dp"
-        android:layout_height="46dp"
-        android:layout_marginStart="68dp"
-        android:layout_marginLeft="68dp"
-        android:background="#5E7A43"
-        android:textColor="@color/silver"
+        android:layout_width="104dp"
+        android:layout_height="47dp"
 
-        android:soundEffectsEnabled="false"
-        android:text="Load Setup"
-        app:layout_constraintStart_toEndOf="@+id/buttonNewSetup"
-        app:layout_constraintTop_toTopOf="@+id/buttonNewSetup" />
-
-    <Button
-        android:id="@+id/buttonNewSetup"
-        android:layout_width="103dp"
-        android:layout_height="46dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginLeft="36dp"
         android:background="#5E7A43"
         android:backgroundTint="@color/backgroundGreen"
         android:soundEffectsEnabled="false"
-        android:text="New Setup"
+        android:text="Manage Setups"
         android:textColor="@color/silver"
-
-        app:layout_constraintStart_toStartOf="@+id/buttonAddUser"
-        app:layout_constraintTop_toBottomOf="@+id/buttonAddUser" />
+        app:layout_constraintStart_toEndOf="@+id/buttonAddUser"
+        app:layout_constraintTop_toTopOf="@+id/buttonAddUser" />
 
     <Button
         android:id="@+id/buttonAddUser"
-        android:layout_width="39dp"
-        android:layout_height="36dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="103dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="52dp"
         android:background="#5E7A43"
         android:backgroundTint="@color/backgroundGreen"
-        android:soundEffectsEnabled="false"
-        android:text="+"
 
+        android:soundEffectsEnabled="false"
+        android:text="Add User"
         android:textColor="@color/silver"
         app:layout_constraintStart_toStartOf="@+id/userView"
         app:layout_constraintTop_toBottomOf="@+id/userView" />

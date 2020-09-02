@@ -10,17 +10,16 @@
     >
 
     <Button
-        android:background="@color/backgroundGreen"
-        android:textColor="@color/silver"
+        android:id="@+id/buttonAddSetup"
+        android:layout_width="89dp"
 
-        android:id="@+id/buttonDeleteSetup"
-        android:layout_width="39dp"
-        android:layout_height="39dp"
-        android:layout_marginStart="100dp"
-        android:layout_marginLeft="100dp"
-        android:layout_marginTop="8dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginLeft="52dp"
+        android:background="@color/backgroundGreen"
         android:soundEffectsEnabled="false"
-        android:text="-"
+        android:text="Add Setup"
+        android:textColor="@color/silver"
         app:layout_constraintStart_toEndOf="@+id/buttonBack"
         app:layout_constraintTop_toTopOf="@+id/buttonBack" />
 

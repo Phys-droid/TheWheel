@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SetupConfig"
+    android:background="@drawable/gradient">
+
+
+    <TextView
+        android:id="@+id/textUserConfig"
+        android:layout_width="333dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginLeft="52dp"
+        android:layout_marginTop="16dp"
+        android:text="Setup-Configuration"
+        android:textColor="@color/silver"
+
+        android:textSize="36dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <EditText
+        android:id="@+id/nameInput"
+        android:layout_width="230dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginTop="28dp"
+        android:backgroundTint="@color/greensilver"
+        android:drawableTint="@color/silver"
+        android:foregroundTint="@color/silver"
+        android:inputType="text"
+        android:textColor="@color/silver"
+        android:textColorHighlight="@color/silver"
+        android:textCursorDrawable="@null"
+        android:textSize="26dp"
+        android:theme="@style/ColoredHandleTheme"
+        app:layout_constraintStart_toEndOf="@+id/textName"
+        app:layout_constraintTop_toBottomOf="@+id/textUserConfig" />
+
+
+    <Button
+        android:id="@+id/buttonBack"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="84dp"
+        android:background="#5E7A43"
+        android:backgroundTint="@color/backgroundGreen"
+        android:soundEffectsEnabled="false"
+        android:text="Back"
+        android:textColor="@color/silver"
+        app:layout_constraintStart_toStartOf="@+id/buttonDelete"
+        app:layout_constraintTop_toBottomOf="@+id/buttonDelete" />
+
+    <Button
+        android:id="@+id/buttonSave"
+
+        android:layout_width="88dp"
+        android:layout_height="50dp"
+
+        android:layout_marginStart="96dp"
+        android:layout_marginLeft="96dp"
+        android:background="#5E7A43"
+        android:backgroundTint="@color/backgroundGreen"
+
+        android:soundEffectsEnabled="false"
+        android:text="Select"
+        android:textColor="@color/silver"
+        app:layout_constraintStart_toEndOf="@+id/buttonBack"
+        app:layout_constraintTop_toTopOf="@+id/buttonBack" />
+
+    <TextView
+        android:id="@+id/textName"
+        android:layout_width="82dp"
+
+        android:layout_height="51dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="36dp"
+        android:text="Name"
+        android:textColor="@color/silver"
+        android:textSize="26dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textUserConfig" />
+
+    <Button
+        android:id="@+id/buttonDelete"
+        android:layout_width="117dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginLeft="52dp"
+
+        android:layout_marginTop="72dp"
+        android:background="#5E7A43"
+        android:backgroundTint="@color/backgroundGreen"
+        android:soundEffectsEnabled="false"
+        android:text="Delete Setup"
+        android:textColor="@color/silver"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textName" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

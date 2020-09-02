@@ -18,9 +18,34 @@ public class SetupList {
         setupList.remove(setupList.size()-1);
     }
 
+    public static boolean removeSetupByName(String setupName) {
+        if (currentSetup.equals(setupName)) {
+            if (setupList.size() == 1) {
+                // ToDo: Make toast
+                System.out.println("LAST SETUPLIST, CANNOT DELETE!!!");
+                return false;
+            }
+            currentSetup = getSomeSetupName();
+        }
+        //System.out.println("MY INPUT: " + setupName);
+        for (int x = 0; x < setupList.size(); x++) {
+            //System.out.println("SetupList @ X: " + setupList.get(x).userListId);
+            if (setupList.get(x).userListId.equals(setupName)) {
+                //System.out.println("I'M REMOVING FOLOWING NAME: " + setupName);
+                setupList.remove(x);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static String getSomeSetupName() {
+        return setupList.get(0).userListId;
+    }
+
     public static UserList getUserList(String id) {
         for (int x = 0; x < setupList.size(); x++) {
-            //System.out.println(setupList.get(x).userListId);
+            System.out.println("HI: " + setupList.get(x).userListId);
             if (setupList.get(x).userListId.equals(id)) {
 
                 return setupList.get(x);

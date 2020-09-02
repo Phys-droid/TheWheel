@@ -22,8 +22,6 @@ public class UserOverview extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_overview);
 
-
-
         //Write correct setup
         final TextView setupnumber = findViewById(R.id.setupNumber);
         setupnumber.setText("CURRENT SETUP: " + SetupList.currentSetup);
@@ -44,17 +42,6 @@ public class UserOverview extends AppCompatActivity {
 
                 Intent intent = new Intent(UserOverview.this, UserConfig.class);
                 startActivity(intent);
-            }
-        });
-        //Create Save button
-        final Button buttonSave = findViewById(R.id.buttonNewSetup);
-        buttonSave.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                SoundManager.togg.start();
-                int newsetup = SetupList.setupList.size()+1;
-                SetupList.addSetup(new UserList(Integer.toString(newsetup)));
-                SetupList.currentSetup = Integer.toString(newsetup);
-                recreate();
             }
         });
         final Button buttonLoad = findViewById(R.id.buttonLoad);

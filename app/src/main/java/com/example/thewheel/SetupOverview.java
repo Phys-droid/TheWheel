@@ -36,19 +36,15 @@ public class SetupOverview extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        final Button buttonDel = findViewById(R.id.buttonDeleteSetup);
-        buttonDel.setOnClickListener(new View.OnClickListener() {
+        final Button buttonAdd = findViewById(R.id.buttonAddSetup);
+        buttonAdd.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                // ToDo: Offer option to delete certain setup
-                SetupList.removeLastSetup();
-                if (SetupList.setupList.size() == Integer.parseInt(SetupList.currentSetup) - 1) {
-                    SetupList.currentSetup = Integer.toString(Integer.parseInt(SetupList.currentSetup) - 1);
-                }
                 SoundManager.togg.start();
-                recreate();
+                SetupList.currentSetup = null;
+                Intent intent = new Intent(SetupOverview.this, SetupConfig.class);
+                startActivity(intent);
             }
         });
-
     }
 
     void fillSetupView() {
@@ -76,7 +72,7 @@ public class SetupOverview extends AppCompatActivity {
                 String selectedSetup = setupNameList.get(position);
                 //Toast.makeText(getApplicationContext(), "User Selected : " + selectedUser,   Toast.LENGTH_LONG).show();
                 // Change to Edit User
-                Intent intent = new Intent(SetupOverview.this, UserOverview.class);
+                Intent intent = new Intent(SetupOverview.this, SetupConfig.class);
                 //System.out.println("A USER HAS BEEN CLICKED");
                 SetupList.currentSetup = selectedSetup;
                 //System.out.println("SEARCH USERS: " + UserConfig.currentUser);

@@ -14,6 +14,7 @@
         <activity android:name=".UserOverview">  </activity>
         <activity android:name=".PieDemo">  </activity>
         <activity android:name=".SetupOverview">  </activity>
+        <activity android:name=".SetupConfig">  </activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
