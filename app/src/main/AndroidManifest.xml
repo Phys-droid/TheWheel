@@ -16,7 +16,9 @@
         <activity android:name=".UserOverview"
             android:screenOrientation="portrait">
             >  </activity>
-         <activity android:name=".SetupConfig">  </activity>
+         <activity android:name=".SetupConfig"
+             android:screenOrientation="portrait">
+             > </activity>
         <activity android:name=".PieDemo"
             android:screenOrientation="portrait">
             >  </activity>
