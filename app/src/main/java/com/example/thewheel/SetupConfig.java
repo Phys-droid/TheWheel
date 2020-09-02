@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -79,10 +80,17 @@ public class SetupConfig extends AppCompatActivity {
         buttonSave.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 EditText nameBox = (EditText) findViewById(R.id.nameInput);
+
                 SoundManager.togg.start();
                 if (SetupList.currentSetup != null) {
+                    if (!checkInput(nameBox, true)) {
+                        return;
+                    }
                     updateName(nameBox.getText().toString());
                 } else {
+                    if (!checkInput(nameBox, false)) {
+                        return;
+                    }
                     saveName(nameBox.getText().toString());
                 }
                 View currentFocus = findViewById(android.R.id.content).getRootView();
@@ -92,6 +100,32 @@ public class SetupConfig extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    private boolean checkInput(EditText nameBox, boolean isNotNull) {
+        if (nameBox.getText().toString().equals("")){
+            Toast.makeText(SetupConfig.this, "Enter a name for your Setup!", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        SetupList setuplist;
+        for (int i = 0; i < SetupList.setupList.size(); i++){
+            System.out.println("CURRENT USERLIST ID: " + SetupList.setupList.get(i).userListId);
+            System.out.println("CURRENT USERLIST ID FIRST PART: " +  SetupList.setupList.get(i).userListId);
+            if (!isNotNull) {
+                if ( SetupList.setupList.get(i).userListId.equals(nameBox.getText().toString())) {
+                    Toast.makeText(SetupConfig.this, "This Setup already exists!", Toast.LENGTH_SHORT).show();
+                    return false;
+                }
+            }
+            else if(SetupList.currentSetup.equals(nameBox.getText().toString())){
+                //do nothing
+            }
+            else if (nameBox.getText().toString().equals(SetupList.setupList.get(i).userListId)) {
+                Toast.makeText(SetupConfig.this, "This Setup already exists!", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        }
+        return true;
     }
 
 

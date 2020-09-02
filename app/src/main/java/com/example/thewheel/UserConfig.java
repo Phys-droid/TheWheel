@@ -8,8 +8,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.Set;
 
 
 public class UserConfig extends AppCompatActivity {
@@ -66,6 +69,25 @@ public class UserConfig extends AppCompatActivity {
         buttonSave.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 EditText nameBox = (EditText) findViewById(R.id.nameInput);
+
+                if (nameBox.getText().toString().equals("")){
+                    Toast.makeText(UserConfig.this, "Enter a Username!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                UserList userlist = SetupList.getCurrentUserList();
+                User user = UserConfig.currentUser;
+                for (int i = 0; i < userlist.userArray.size(); i++){
+                    if (nameBox.getText().toString().equals(UserConfig.currentUser)) {
+                        // Do nothing
+                    }
+                    else if (nameBox.getText().toString().equals(userlist.userArray.get(i).name)) {
+                        Toast.makeText(UserConfig.this, "This User already exists!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                }
+
+
+
                 SoundManager.togg.start();
                 if (currentUser != null) {
                     updateNameAndColour(nameBox.getText().toString(), currentColour);
