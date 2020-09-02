@@ -70,31 +70,21 @@ public class UserConfig extends AppCompatActivity {
             public void onClick(View v) {
                 EditText nameBox = (EditText) findViewById(R.id.nameInput);
 
-                if (nameBox.getText().toString().equals("")){
-                    Toast.makeText(UserConfig.this, "Enter a Username!", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                UserList userlist = SetupList.getCurrentUserList();
-                User user = UserConfig.currentUser;
-                for (int i = 0; i < userlist.userArray.size(); i++){
-                    if (nameBox.getText().toString().equals(UserConfig.currentUser)) {
-                        // Do nothing
-                    }
-                    else if (nameBox.getText().toString().equals(userlist.userArray.get(i).name)) {
-                        Toast.makeText(UserConfig.this, "This User already exists!", Toast.LENGTH_SHORT).show();
+
+
+
+                if (currentUser != null) {
+                    if (!checkInput(nameBox, false)) {
                         return;
                     }
-                }
-
-
-
-                SoundManager.togg.start();
-                if (currentUser != null) {
                     updateNameAndColour(nameBox.getText().toString(), currentColour);
                 } else {
+                    if (!checkInput(nameBox, true))
                     saveNameAndColour(nameBox.getText().toString(), currentColour);
+                        return;
                 }
                 // ToDo: Move saving
+                SoundManager.togg.start();
                 View currentFocus = findViewById(android.R.id.content).getRootView();
                 StorageControl.save(currentFocus, "Wheel_Config.txt");
                 // Move saving
@@ -179,6 +169,31 @@ public class UserConfig extends AppCompatActivity {
         });
     }
 
+    private boolean checkInput(EditText nameBox, boolean currentUserNull) {
+
+        if (nameBox.getText().toString().equals("")){
+            Toast.makeText(UserConfig.this, "Enter a Username!", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        UserList userlist = SetupList.getCurrentUserList();
+        User user = UserConfig.currentUser;
+        for (int i = 0; i < userlist.userArray.size(); i++){
+            if (currentUserNull) {
+                if (nameBox.getText().toString().equals(userlist.userArray.get(i).name)) {
+                    Toast.makeText(UserConfig.this, "This User already exists!", Toast.LENGTH_SHORT).show();
+                    return false;
+                }
+            }
+            else if (nameBox.getText().toString().equals(UserConfig.currentUser.name)) {
+                // Do nothing
+            }
+            else if (nameBox.getText().toString().equals(userlist.userArray.get(i).name)) {
+                Toast.makeText(UserConfig.this, "This User already exists!", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        }
+        return true;
+    }
 
     private void saveNameAndColour(String username, String colour) {
         UserList currentUserList = SetupList.getUserList(SetupList.currentSetup);

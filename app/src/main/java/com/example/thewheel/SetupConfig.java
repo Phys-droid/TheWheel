@@ -151,8 +151,7 @@ public class SetupConfig extends AppCompatActivity {
     private void createNewSetupMenu() {
         //Auto fill in some color
         EditText nameBox = (EditText) findViewById(R.id.nameInput);
-        nameBox.setText("SETUP " + SetupList.setupList.size()+1);
-        nameBox.setText("");
+        nameBox.setText("Setup " + (SetupList.setupList.size()+1));
         Button savebutton = (Button) findViewById(R.id.buttonSave);
         savebutton.setText("SAVE");
     }
