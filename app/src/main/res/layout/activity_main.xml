@@ -73,8 +73,8 @@
 
     <ImageButton
         android:id="@+id/button_spin"
-        android:layout_width="1140dp"
-        android:layout_height="1226dp"
+        android:layout_width="393dp"
+        android:layout_height="716dp"
         android:background="#00FFFFFF"
         android:tint="#00A83D3D"
         app:layout_constraintBottom_toBottomOf="parent"

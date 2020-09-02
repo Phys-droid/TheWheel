@@ -140,8 +140,11 @@ public class MainActivity<start> extends AppCompatActivity {
                 else{
                     sound = Boolean.TRUE;
                     sound_button.setImageResource(R.drawable.sound_on);
+                    if (SoundManager.michael.isPlaying()){
+                        SoundManager.michael.start();
+                        System.out.println("l");
+                    }
                     SoundManager.michael.setVolume(1, 1);
-                    SoundManager.michael.start();
                 }
             }
         });
@@ -162,12 +165,11 @@ public class MainActivity<start> extends AppCompatActivity {
                 time = animate_wheel(finalA,finalB,finalC, start, wheel);
                 System.out.println(time);
                 // Play sound
-                if (sound == Boolean.TRUE){
-                    SoundManager.michael.seekTo(0);
-                    SoundManager.michael.start();
+                SoundManager.michael.seekTo(0);
+                SoundManager.michael.start();
 
 
-                }
+
 
             }
         });
