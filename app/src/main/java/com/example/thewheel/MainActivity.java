@@ -14,6 +14,7 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.View;
@@ -117,15 +118,6 @@ public class MainActivity<start> extends AppCompatActivity {
 
 
 
-        //RNG
-        Random r = new Random(System.currentTimeMillis());
-        int range = 1000;
-        float a = r.nextInt(range);
-        int b = r.nextInt(range);
-        int c = r.nextInt(range);
-
-
-
 
         //buttons
         option_button = findViewById(R.id.button_options);
@@ -143,7 +135,6 @@ public class MainActivity<start> extends AppCompatActivity {
                 if (sound == Boolean.TRUE){
                     sound = Boolean.FALSE;
                     sound_button.setImageResource(R.drawable.sound_off);
-                    SoundManager.michael.pause();
                     SoundManager.michael.setVolume(0, 0);
                 }
                 else{
@@ -154,16 +145,27 @@ public class MainActivity<start> extends AppCompatActivity {
                 }
             }
         });
-        final float finalA = a;
-        final int finalB = b;
-        final int finalC = c;
         // *Initialize Sound Manager
         button_spin.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                //rng
+                Random r = new Random(System.currentTimeMillis());
+                int range = 1000;
+                float a = r.nextInt(range);
+                int b = r.nextInt(range);
+                int c = r.nextInt(range);
+                final float finalA = a;
+                final int finalB = b;
+                final int finalC = c;
+
+
                 time = animate_wheel(finalA,finalB,finalC, start, wheel);
+                System.out.println(time);
                 // Play sound
                 if (sound == Boolean.TRUE){
+                    SoundManager.michael.seekTo(0);
                     SoundManager.michael.start();
+
 
                 }
 
@@ -315,7 +317,6 @@ public class MainActivity<start> extends AppCompatActivity {
             //log(weak damping)
             else if (delta/x > 0.09) {
                 delta = (float) (x_*Math.pow(0.99, counter2)*Math.pow(0.992, counter-counter2));
-                System.out.println(counter);
             }
             //linear(strong damping)
             else if (delta/x > 0.06){
