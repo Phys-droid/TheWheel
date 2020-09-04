@@ -79,7 +79,9 @@ public class MainActivity<start> extends AppCompatActivity {
 
         //Initiate variables
         angle = 0;
-
+        if (sound == true){
+            SoundManager.michael.setVolume(1, 1);
+        }
 
 
         UserList userList = SetupList.getCurrentUserList();
@@ -125,6 +127,7 @@ public class MainActivity<start> extends AppCompatActivity {
         option_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { openOptions();
+                SoundManager.michael.setVolume(0, 0);
             }
         });
         button_spin = findViewById(R.id.button_spin);
@@ -143,7 +146,6 @@ public class MainActivity<start> extends AppCompatActivity {
                     sound_button.setImageResource(R.drawable.sound_on);
                     if (SoundManager.michael.isPlaying()){
                         SoundManager.michael.start();
-                        System.out.println("l");
                     }
                     SoundManager.michael.setVolume(1, 1);
                 }
@@ -164,10 +166,8 @@ public class MainActivity<start> extends AppCompatActivity {
 
 
                 time = animate_wheel(finalA,finalB,finalC, start, wheel);
-                System.out.println(time);
                 // Play sound
-                SoundManager.michael.seekTo(0);
-                SoundManager.michael.start();
+
 
 
 
@@ -266,6 +266,7 @@ public class MainActivity<start> extends AppCompatActivity {
 
 
 
+
             }
         }
 
@@ -291,7 +292,7 @@ public class MainActivity<start> extends AppCompatActivity {
 
 
         int t = 9;
-        float tolerance = (float) 0.000005;
+        float tolerance = (float) 0.005;
         float delta =  x;
         float x_ = 0;
         int counter = 0;
@@ -342,7 +343,39 @@ public class MainActivity<start> extends AppCompatActivity {
 
         animated.startAnimation(as);
 
+        // Play sound
 
+        MediaPlayer a = SoundManager.michael;
+
+        if (!SoundManager.michael.isPlaying()){
+            SoundManager.initialize(this);
+        }
+
+
+        as.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+                SoundManager.michael.seekTo(0);
+                SoundManager.michael.start();
+
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                MediaPlayer a = new MediaPlayer();
+                a=SoundManager.michael;
+                SoundManager.michael.stop();
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+
+        System.out.println(t_tot);
         return t_tot;
     }
 
