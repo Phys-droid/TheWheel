@@ -82,6 +82,9 @@ public class MainActivity<start> extends AppCompatActivity {
         if (sound == true){
             SoundManager.michael.setVolume(1, 1);
         }
+        else{
+            SoundManager.michael.setVolume(0, 0);
+        }
 
 
         UserList userList = SetupList.getCurrentUserList();
@@ -127,7 +130,7 @@ public class MainActivity<start> extends AppCompatActivity {
         option_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { openOptions();
-                SoundManager.michael.setVolume(0, 0);
+
             }
         });
         button_spin = findViewById(R.id.button_spin);
@@ -164,9 +167,7 @@ public class MainActivity<start> extends AppCompatActivity {
                 final int finalB = b;
                 final int finalC = c;
 
-
-                time = animate_wheel(finalA,finalB,finalC, start, wheel);
-                // Play sound
+                time = rotationAnimation(wheel, start, a, b, c, sound);
 
 
 
@@ -278,7 +279,7 @@ public class MainActivity<start> extends AppCompatActivity {
 
 
     //functions__________________________________________________________________________________________________________________________________________________________________________________________
-    private double rotationAnimation(LinearLayout animated, float start, float x, int y, int z) {
+    private double rotationAnimation(LinearLayout animated, float start, float x, int y, int z, Boolean music) {
         x = x*y*z;
 
         while (x > 360){
@@ -357,15 +358,19 @@ public class MainActivity<start> extends AppCompatActivity {
             public void onAnimationStart(Animation animation) {
                 SoundManager.michael.seekTo(0);
                 SoundManager.michael.start();
-
+                if (sound){
+                    SoundManager.michael.setVolume(1, 1);
+                }
+                else{
+                    SoundManager.michael.setVolume(0, 0);
+                }
 
             }
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                MediaPlayer a = new MediaPlayer();
-                a=SoundManager.michael;
                 SoundManager.michael.stop();
+
 
             }
 
@@ -379,12 +384,12 @@ public class MainActivity<start> extends AppCompatActivity {
         return t_tot;
     }
 
-    private double animate_wheel(float a, int b, int c, float start, LinearLayout wheel){
-        return time = rotationAnimation(wheel, start, a, b, c);
-    }
+
 
 
     public void openOptions() {
+        SoundManager.michael.stop();
+        SoundManager.initialize(this);
         Intent intent = new Intent(this, UserOverview.class);
         startActivity(intent);
     }
